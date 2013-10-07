@@ -1,0 +1,23 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: labrats_development
+  pool: 5
+  username: labrats
+  password:
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: labrats_test
+  pool: 5
+  username: labrats
+  password:
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: labrats_production
+  pool: 5
+  username: labrats
+  password:
