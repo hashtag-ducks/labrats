@@ -11,7 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131010001947) do
+ActiveRecord::Schema.define(:version => 20131010003033) do
+
+  create_table "boxes", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "notebooks", :force => true do |t|
     t.string   "name"
