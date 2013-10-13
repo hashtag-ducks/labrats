@@ -11,3 +11,6 @@
 # Other extraneous files.
 *.swp
 .DS_Store
+
+# The secret token file.
+.secret

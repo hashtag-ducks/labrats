@@ -4,4 +4,18 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Labrats::Application.config.secret_token = 'f3fd03144db56dd65b78b645bcb0bc9eaba2665a5af1c75ba5f262b5dd07fc9433c7f5663da798cdd07b766c38782fb6cf143e1f18708d50b356d784a6e9ec8f'
+
+require 'securerandom'
+
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    File.read(token_file).chomp
+  else
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
+
+Labrats::Application.config.secret_token = secure_token
