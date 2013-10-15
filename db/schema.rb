@@ -11,16 +11,30 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131012220246) do
+ActiveRecord::Schema.define(:version => 20131015021458) do
 
   create_table "boxes", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "tab_group_id"
   end
 
   create_table "notebooks", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+  end
+
+  create_table "pages", :force => true do |t|
+    t.integer  "notebook_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "tab_groups", :force => true do |t|
+    t.integer  "page_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
