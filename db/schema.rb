@@ -11,13 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131015021458) do
+ActiveRecord::Schema.define(:version => 20131019205122) do
 
   create_table "boxes", :force => true do |t|
     t.string   "name"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.integer  "tab_group_id"
+    t.text     "content"
+    t.string   "type"
   end
 
   create_table "notebooks", :force => true do |t|
