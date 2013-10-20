@@ -1,5 +1,6 @@
 class NotebooksController < ApplicationController
   before_filter :correct_user, only: [:show, :delete]
+  before_filter :signed_in_user
 
   def new
     @notebook = Notebook.new
