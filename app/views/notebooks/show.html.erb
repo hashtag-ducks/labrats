@@ -3,4 +3,5 @@
   <% @notebook.pages.each do |page| %>
     <%= render partial: "page", locals: {page: page} %>
   <% end %>
+  <%= link_to "Delete this notebook", @notebook, method: :delete %>
 </div>
