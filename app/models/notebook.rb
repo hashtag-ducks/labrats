@@ -3,4 +3,6 @@ class Notebook < ActiveRecord::Base
   has_many :pages
 
   attr_accessible :name
+
+  validates :user_id, presence: true
 end
