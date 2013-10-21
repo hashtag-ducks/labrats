@@ -1,5 +1,8 @@
-<div class="page">
-  <% page.tab_group.each do |group| %>
-    <%= render partial: "tab_group", locals: {group: group} %>
-  <% end %>
+<div class="page" id=<%= page.id %>>
+  <p>Page:</p>
+  <ol>
+    <% page.tab_group.each do |group| %>
+    <li>Group: <%= render partial: "tab_group", locals: {group: group} %></li>
+    <% end %>
+  </ol>
 </div>

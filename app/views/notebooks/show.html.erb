@@ -1,7 +1,20 @@
-<div class="notebook">
+<div class="notebook" id="<%= @notebook.id %>">
   <h1><%= @notebook.name %></h1>
+  <ol class="pages">
   <% @notebook.pages.each do |page| %>
-    <%= render partial: "page", locals: {page: page} %>
+    <li><%= render partial: "shared/page", locals: {page: page} %></li>
   <% end %>
+  </ol>
+  <a href="#" id="new-page">New Page</a>
   <%= link_to "Delete this notebook", @notebook, method: :delete %>
 </div>
+
+<script type="text/javascript">
+    $(function() {
+      var notebook_model = new Labrats.Models.Notebook(<%= @notebook.to_json.html_safe %>);
+      var notebook_view = new Labrats.Views.Notebook({
+        model: notebook_model,
+        el: $('.notebook')
+      });
+    });
+</script>
