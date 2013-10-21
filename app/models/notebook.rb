@@ -5,4 +5,8 @@ class Notebook < ActiveRecord::Base
   attr_accessible :name
 
   validates :user_id, presence: true
+
+  def as_json
+    super(include: :pages)
+  end
 end
