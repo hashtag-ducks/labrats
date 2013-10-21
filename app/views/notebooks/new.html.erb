@@ -1,4 +1,4 @@
-<%= form_for(@notebook) do |form| %>
+<%= form_for(@notebook, url: user_notebooks_path) do |form| %>
   <%= form.label :name %>
   <%= form.text_field :name %>
   <%= form.submit "New notebook" %>

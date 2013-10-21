@@ -1,6 +1,22 @@
 Labrats.Views.Notebook = Backbone.View.extend({
     events: {
-        'click #new-page': 'newPage'
+        'click .new-page': 'newPage'
+    },
+
+    initialize: function() {
+        this.render();
+    },
+
+    render: function() {
+        var self = this;
+        this.model.get('pages').forEach(function(page) {
+            var ele = $('<li></li>');
+            self.$el.children('ol.pages').append(ele);
+            var view = new Labrats.Views.Page({
+                model: page,
+                el: ele
+            });
+        });
     },
 
     newPage: function(event) {
@@ -8,18 +24,21 @@ Labrats.Views.Notebook = Backbone.View.extend({
         var page_model = new Labrats.Models.Page({
             notebook_id: this.$el.attr('id')
         });
+        var self = this;
         page_model.save({}, {
-            success: function() {
+            success: function(response) {
+                // Create a new Page model so that it's got the correct ID.
+                page_model = new Labrats.Models.Page(response.attributes);
                 var pageEle = $('<li></li>');
-                $('.pages').append(pageEle);
-                var page_view = new Labrats.Views.Page({
+                self.$el.children('ol.pages').append(pageEle);
+                var pageView = new Labrats.Views.Page({
                     model: page_model,
                     el: pageEle
                 });
-                page_view.render();
+                self.model.get('pages').add(page_model);
             },
             error: function() {
-                console.log('error');
+                console.log('error saving page');
             }
         });
     }

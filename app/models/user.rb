@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :notebook
+  has_many :notebooks
 
   attr_accessible :email, :name, :organization, :password, :password_confirmation
   has_secure_password

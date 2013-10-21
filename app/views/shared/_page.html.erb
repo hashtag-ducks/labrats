@@ -1,7 +1,7 @@
 <div class="page" id=<%= page.id %>>
   <p>Page:</p>
   <ol>
-    <% page.tab_group.each do |group| %>
+    <% page.tab_groups.each do |group| %>
     <li>Group: <%= render partial: "tab_group", locals: {group: group} %></li>
     <% end %>
   </ol>

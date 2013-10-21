@@ -1,4 +1,9 @@
 Labrats::Application.routes.draw do
+  # Match these first, since Backbone doesn't deal with nested
+  # resources well
+  match 'notebooks/:id/pages/:page_id', to: 'pages#destroy', via: :delete
+  match 'pages/:id/tab_groups/:tab_group_id', to: 'tab_groups#destroy', via: :delete
+
   resources :users do
     resources :notebooks, shallow: true do
       resources :pages, shallow: true do
@@ -9,9 +14,6 @@ Labrats::Application.routes.draw do
     end
   end
   resources :sessions, only: [:new, :create, :destroy]
-  # resources :notebooks, only: [:destroy, :show, :]
-  # resources :pages
-  # resources :tab_groups
 
   root to: 'static_pages/#home'
 

@@ -17,7 +17,7 @@ class NotebooksController < ApplicationController
   end
 
   def index
-    @notebooks = current_user.notebook.all
+    @notebooks = current_user.notebooks.all
   end
 
   def show
@@ -25,8 +25,8 @@ class NotebooksController < ApplicationController
   end
 
   def destroy
-    Notebook.find(params[:id]).delete
-    redirect_to action: 'index'
+    Notebook.find(params[:id]).destroy
+    redirect_to user_notebooks_url(current_user)
   end
 
   private
