@@ -12,15 +12,19 @@
   <% end %>
 </head>
 <body>
-  <header>
-    <ul class="nav pull-right">
-      <% if not signed_in? %>
-      <li><a href="/signin">Sign In</a></li>
-      <li><a href="/signup">Sign Up</a></li>
-      <% else %>
-      <li><%= link_to "Home", current_user %></li>
-      <% end %>
-    </ul>
+  <header class="navbar navbar-inverse">
+    <div class="navbar-inner">
+      <nav>
+        <ul class="nav">
+          <% if not signed_in? %>
+          <li><a href="/signin">Sign In</a></li>
+          <li><a href="/signup">Sign Up</a></li>
+          <% else %>
+          <li><%= link_to "Home", current_user %></li>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
   </header>
   <div class="container">
     <%= yield %>
