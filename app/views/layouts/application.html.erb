@@ -12,9 +12,21 @@
   <% end %>
 </head>
 <body>
-
-<%= yield %>
-
-<%= debug(params) if Rails.env.development? %>
+  <header>
+    <ul class="nav pull-right">
+      <% if not signed_in? %>
+      <li><a href="/signin">Sign In</a></li>
+      <li><a href="/signup">Sign Up</a></li>
+      <% else %>
+      <li><%= link_to "Home", current_user %></li>
+      <% end %>
+    </ul>
+  </header>
+  <div class="container">
+    <%= yield %>
+  </div>
+  <footer class="footer">
+    <%= debug(params) if Rails.env.development? %>
+  </footer>
 </body>
 </html>

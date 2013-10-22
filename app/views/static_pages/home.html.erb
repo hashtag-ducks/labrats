@@ -1,9 +1,1 @@
 <h1>labrats</h1>
-<ul>
-  <% if not signed_in? %>
-    <li><a href="/signin">Sign In</a></li>
-    <li><a href="/signup">Sign Up</a></li>
-  <% else %>
-    <li><%= link_to "Home", current_user %></li>
-  <% end %>
-</ul>
