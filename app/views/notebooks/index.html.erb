@@ -1,7 +1,9 @@
+<h1>Your notebooks</h1>
 <div class="notebooks">
   <ul>
     <% @notebooks.each do |notebook| %>
       <li><%= link_to notebook.name, notebook %></li>
     <% end %>
   </ul>
+  <%= link_to "New notebook", new_user_notebook_url %>
 </div>
