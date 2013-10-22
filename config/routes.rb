@@ -16,7 +16,7 @@ Labrats::Application.routes.draw do
   end
   resources :sessions, only: [:new, :create, :destroy]
 
-  root to: 'static_pages/#home'
+  root to: 'static_pages#home'
 
   match '/signup', to: 'users#new'
   match '/signin', to: 'sessions#new'
