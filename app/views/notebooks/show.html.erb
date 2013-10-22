@@ -9,7 +9,7 @@
 
 <script type="text/javascript">
     $(function() {
-      notebook_model = new Labrats.Models.Notebook(<%= @notebook.to_json.html_safe %>, {parse: true});
+      var notebook_model = new Labrats.Models.Notebook(<%= @notebook.to_json.html_safe %>, {parse: true});
       var notebook_view = new Labrats.Views.Notebook({
         model: notebook_model,
         el: $('.notebook')

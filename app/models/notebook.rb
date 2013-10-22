@@ -9,9 +9,11 @@ class Notebook < ActiveRecord::Base
   def as_json(options={})
     # This is jank, but apparently necessary to ensure that all the
     # right JSON is in all the right places. Bleh.
-    super(include: { pages:
-            { include: { tab_groups:
-                { include: :boxes}
+    super(include:
+          { pages:
+            { include:
+              { tab_groups:
+                { include: { boxes: { methods: :type } } }
               }
             }
           })

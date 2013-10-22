@@ -3,6 +3,7 @@ Labrats::Application.routes.draw do
   # resources well
   match 'notebooks/:id/pages/:page_id', to: 'pages#destroy', via: :delete
   match 'pages/:id/tab_groups/:tab_group_id', to: 'tab_groups#destroy', via: :delete
+  match 'tab_groups/:id/boxes/:box_id', to: 'boxes#destroy', via: :delete
 
   resources :users do
     resources :notebooks, shallow: true do

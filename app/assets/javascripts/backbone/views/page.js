@@ -34,7 +34,7 @@ Labrats.Views.Page = Backbone.View.extend({
             success: function(response) {
                 tab_group_model = new Labrats.Models.TabGroup(response.attributes);
                 var tabGroupEle = $('<li></li>');
-                self.$el.children('.tab-groups').append(tabGroupEle);
+                self.$el.find('.tab-groups').append(tabGroupEle);
                 var tabGroupView = new Labrats.Views.TabGroup({
                     model: tab_group_model,
                     el: tabGroupEle
@@ -49,7 +49,6 @@ Labrats.Views.Page = Backbone.View.extend({
 
     delete: function(event) {
         event.preventDefault();
-        // debugger;
         this.model.destroy({
             url: this.model.url() + '/' + this.model.get('id')
         });

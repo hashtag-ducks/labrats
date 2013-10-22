@@ -13,7 +13,6 @@ Labrats.Models.Notebook = Backbone.Model.extend({
                 return new Labrats.Models.Page(page_JSON, {parse: true});
             })
         );
-        console.log(response);
         return response;
     }
 });
