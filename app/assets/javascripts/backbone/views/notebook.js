@@ -11,7 +11,7 @@ Labrats.Views.Notebook = Backbone.View.extend({
         var self = this;
         this.model.get('pages').forEach(function(page) {
             var ele = $('<li></li>');
-            self.$el.children('ol.pages').append(ele);
+            self.$el.children('ul.pages').append(ele);
             var view = new Labrats.Views.Page({
                 model: page,
                 el: ele
@@ -30,7 +30,7 @@ Labrats.Views.Notebook = Backbone.View.extend({
                 // Create a new Page model so that it's got the correct ID.
                 page_model = new Labrats.Models.Page(response.attributes);
                 var pageEle = $('<li></li>');
-                self.$el.children('ol.pages').append(pageEle);
+                self.$el.children('ul.pages').append(pageEle);
                 var pageView = new Labrats.Views.Page({
                     model: page_model,
                     el: pageEle

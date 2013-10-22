@@ -16,7 +16,7 @@ Labrats.Views.Page = Backbone.View.extend({
         var self = this;
         this.model.get('tab_groups').forEach(function(tabGroup) {
             var ele = $('<li></li>');
-            self.$el.find('ol.tab-groups').append(ele);
+            self.$el.find('ul.tab-groups').append(ele);
             var view = new Labrats.Views.TabGroup({
                 model: tabGroup,
                 el: ele
