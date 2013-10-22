@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true, length: { maximum: 100 }
   validates :email, presence: true, format: { with: EMAIL_REGEX }, uniqueness: { case_sensitive: false }
+  validates :organization, presence: true
   validates :password, presence: true, length: { minimum: 10 }
   validates :password_confirmation, presence: true
 
