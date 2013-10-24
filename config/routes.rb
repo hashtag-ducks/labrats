@@ -15,6 +15,7 @@ Labrats::Application.routes.draw do
     end
   end
   resources :sessions, only: [:new, :create, :destroy]
+  resources :notebook_access, only: [:create, :destroy]
 
   root to: 'static_pages#home'
 

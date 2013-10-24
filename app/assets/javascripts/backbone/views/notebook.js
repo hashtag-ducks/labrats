@@ -1,6 +1,8 @@
 Labrats.Views.Notebook = Backbone.View.extend({
     events: {
-        'click .new-page': 'newPage'
+        'click .new-page': 'newPage',
+        'click .grant-access': 'grantAccess',
+        'click .revoke-access': 'revokeAccess'
     },
 
     initialize: function() {
@@ -39,6 +41,29 @@ Labrats.Views.Notebook = Backbone.View.extend({
             },
             error: function() {
                 console.log('error saving page');
+            }
+        });
+    },
+
+    grantAccess: function(event) {
+        event.preventDefault();
+        var email = this.$el.find('.user-email').val();
+        $.ajax('/notebook_access', {
+            type: 'POST',
+            data: {
+                notebook_id: this.model.get('id'),
+                user_email: email
+            }
+        });
+    },
+
+    revokeAccess: function(event) {
+        event.preventDefault();
+        var email = this.$el.find('.user-email').val();
+        $.ajax('/notebook_access/' + this.model.get('id'), {
+            type: 'DELETE',
+            data: {
+                user_email: email
             }
         });
     }
