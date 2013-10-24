@@ -9,20 +9,20 @@ describe Notebook do
                      password_confirmation: 'thisisapassword')
     @user.save
     @notebook = Notebook.new(name: 'notebook')
-    @notebook.user = @user
+    @notebook.owner = @user
   end
 
   subject { @notebook }
 
   it { should respond_to(:name) }
-  it { should respond_to(:user) }
+  it { should respond_to(:owner) }
   it { should respond_to(:pages) }
 
   it { should be_valid }
 
   describe 'Missing attributes' do
-    describe 'user' do
-      before { @notebook.user = nil }
+    describe 'owner' do
+      before { @notebook.owner_id = nil }
       it { should_not be_valid }
     end
   end
