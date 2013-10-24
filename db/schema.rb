@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131023202524) do
+ActiveRecord::Schema.define(:version => 20131024024431) do
 
   create_table "boxes", :force => true do |t|
     t.string   "name"

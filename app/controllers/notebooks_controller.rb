@@ -1,5 +1,6 @@
 class NotebooksController < ApplicationController
-  before_filter :correct_user, only: [:show, :delete]
+  before_filter :notebook_owner, only: :destroy
+  before_filter :allowed_access, only: :show
   before_filter :signed_in_user
 
   def new
@@ -8,7 +9,8 @@ class NotebooksController < ApplicationController
 
   def create
     @notebook = Notebook.new(params[:notebook])
-    @notebook.user = current_user
+    @notebook.owner = current_user
+    @notebook.users << current_user
     if @notebook.save
       redirect_to @notebook
     else
@@ -31,8 +33,13 @@ class NotebooksController < ApplicationController
 
   private
 
-  def correct_user
+  def notebook_owner
     @notebook = Notebook.find_by_id(params[:id])
-    redirect_to root_url unless current_user?(@notebook.user)
+    redirect_to root_url unless current_user?(@notebook.owner)
+  end
+
+  def allowed_access
+    @notebook = Notebook.find_by_id(params[:id])
+    redirect_to root_url unless @notebook.users.include?(current_user)
   end
 end

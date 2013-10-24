@@ -5,7 +5,6 @@ class Notebook < ActiveRecord::Base
   attr_accessible :name
 
   validates :owner, presence: true
-  before_validation :make_owner
 
   # Defining owner as a property lets us map the owner_id column in
   # the database (which is an integer) to the actual User model which
