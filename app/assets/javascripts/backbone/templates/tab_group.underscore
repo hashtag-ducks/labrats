@@ -3,6 +3,8 @@
   <ul class="boxes">
     <!-- Boxes attach here -->
   </ul>
-  <a href="#" class="new-box" data-box-type="TextBox">New Box</a>
-  <a href="#" class="delete-tab-group">Delete this tab group</a>
+  <% if(is_owner) { %>
+    <a href="#" class="new-box" data-box-type="TextBox">New Box</a>
+    <a href="#" class="delete-tab-group">Delete this tab group</a>
+  <% } %>
 </div>

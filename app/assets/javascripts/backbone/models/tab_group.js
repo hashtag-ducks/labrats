@@ -28,7 +28,10 @@ Labrats.Models.TabGroup = Backbone.Model.extend({
                 // of the box class, so as long as there's a
                 // one-to-one mapping between Rails and Backbone
                 // models this works
-                return new Labrats.Models[box_JSON.type](box_JSON, {parse: true});
+                return new Labrats.Models[box_JSON.type](
+                    _.extend({is_owner: response.is_owner}, box_JSON),
+                    {parse: true}
+                );
             })
         );
         return response;

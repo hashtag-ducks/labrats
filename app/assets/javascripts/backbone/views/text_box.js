@@ -11,7 +11,8 @@ Labrats.Views.TextBox = Labrats.Views.Box.extend({
         this.$el.html(_.template(tpl, {
             id: this.model.get('id'),
             name: this.model.get('name'),
-            content: this.model.get('content')
+            content: this.model.get('content'),
+            is_owner: this.model.get('is_owner')
         }));
         this.render();
     },

@@ -3,7 +3,7 @@ class TabGroup < ActiveRecord::Base
   has_many :boxes, dependent: :destroy
 
   delegate :notebook, to: :page
-  delegate :owner, to: :notebook
+  delegate :owner, :users, to: :notebook
 
   attr_accessible :page_id
 

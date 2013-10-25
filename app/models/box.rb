@@ -4,7 +4,7 @@ class Box < ActiveRecord::Base
   attr_accessible :name, :tab_group_id, :type
 
   delegate :notebook, to: :tab_group
-  delegate :owner, to: :notebook
+  delegate :owner, :users, to: :notebook
 
   validates :tab_group_id, presence: true
 

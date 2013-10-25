@@ -51,7 +51,7 @@ Labrats.Views.Notebook = Backbone.View.extend({
         $.ajax('/notebook_access', {
             type: 'POST',
             data: {
-                notebook_id: this.model.get('id'),
+                id: this.model.get('id'),
                 user_email: email
             }
         });

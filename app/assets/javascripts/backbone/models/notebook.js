@@ -10,7 +10,10 @@ Labrats.Models.Notebook = Backbone.Model.extend({
     parse: function(response) {
         response.pages = new Labrats.Collections.Pages(
             _.map(response.pages, function(page_JSON) {
-                return new Labrats.Models.Page(page_JSON, {parse: true});
+                return new Labrats.Models.Page(
+                    _.extend({is_owner: response.is_owner}, page_JSON),
+                    {parse: true}
+                );
             })
         );
         return response;

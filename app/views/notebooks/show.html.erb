@@ -3,18 +3,20 @@
   <ul class="pages">
     <!-- Pages will attach here for rendering. -->
   </ul>
-  <a href="#" class="new-page">New Page</a>
-  <%= link_to "Delete this notebook", @notebook, method: :delete %>
-  <div class="access">
-    <input type="text" class="user-email" />
-    <a href="#" class="grant-access">Grant notebook access to this user.</a>
-    <a href="#" class="revoke-access">Revoke notebook access from this user.</a>
-  </div>
+  <% if @notebook.owner?(current_user) %>
+    <a href="#" class="new-page">New Page</a>
+    <%= link_to "Delete this notebook", @notebook, method: :delete %>
+    <div class="access">
+      <input type="text" class="user-email" />
+      <a href="#" class="grant-access">Grant notebook access to this user.</a>
+      <a href="#" class="revoke-access">Revoke notebook access from this user.</a>
+    </div>
+  <% end %>
 </div>
 
 <script type="text/javascript">
     $(function() {
-      var notebook_model = new Labrats.Models.Notebook(<%= @notebook.to_json.html_safe %>, {parse: true});
+      var notebook_model = new Labrats.Models.Notebook(<%= @notebook.to_json(is_owner: @notebook.owner?(current_user)).html_safe %>, {parse: true});
       var notebook_view = new Labrats.Views.Notebook({
         model: notebook_model,
         el: $('.notebook')

@@ -17,16 +17,22 @@ class Notebook < ActiveRecord::Base
     self.owner_id = user.id
   end
 
+  def owner?(user)
+    owner == user
+  end
+
   def as_json(options={})
     # This is jank, but apparently necessary to ensure that all the
     # right JSON is in all the right places. Bleh.
-    super(include:
-          { pages:
-            { include:
-              { tab_groups:
-                { include: { boxes: { methods: :type } } }
-              }
-            }
-          })
+    json = super(include:
+                 { pages:
+                   { include:
+                     { tab_groups:
+                       { include: { boxes: { methods: :type } } }
+                     }
+                   }
+                 })
+    json[:is_owner] = options[:is_owner]
+    return json
   end
 end

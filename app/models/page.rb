@@ -2,7 +2,7 @@ class Page < ActiveRecord::Base
   belongs_to :notebook
   has_many :tab_groups, dependent: :destroy
 
-  delegate :owner, to: :notebook
+  delegate :owner, :users, to: :notebook
 
   attr_accessible :notebook_id
 

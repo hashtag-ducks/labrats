@@ -32,4 +32,8 @@ class NotebooksController < ApplicationController
     Notebook.find(params[:id]).destroy
     redirect_to user_notebooks_url(current_user)
   end
+
+  def model_class
+    Notebook
+  end
 end

@@ -11,7 +11,8 @@ Labrats.Views.TabGroup = Backbone.View.extend({
     render: function() {
         var tpl = $('#tab_group-tpl').text();
         this.$el.html(_.template(tpl, {
-            id: this.model.get('id')
+            id: this.model.get('id'),
+            is_owner: this.model.get('is_owner')
         }));
         var self = this;
         this.model.get('boxes').forEach(function(box) {

@@ -6,7 +6,7 @@ class NotebookAccessController < ApplicationController
   respond_to :json
 
   def create
-    notebook = Notebook.find(params[:notebook_id])
+    notebook = Notebook.find(params[:id])
     user = User.find_by_email(params[:user_email])
     unless notebook.users.include? user
       notebook.users << user

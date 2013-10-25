@@ -3,6 +3,8 @@
   <ul class="tab-groups">
     <!-- Tab groups attach here -->
   </ul>
-  <a href="#" class="new-tab-group">New Tab Group</a>
-  <a href="#" class="delete-page">Delete this page</a>
+  <% if(is_owner) { %>
+    <a href="#" class="new-tab-group">New Tab Group</a>
+    <a href="#" class="delete-page">Delete this page</a>
+  <% } %>
 </div>
