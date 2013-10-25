@@ -13,6 +13,7 @@ end
 
 group :test do
   gem 'capybara', '1.1.2'
+  gem 'rake', '10.1.0' # for Travis CI
 end
 
 # Gems used only for assets and not required
