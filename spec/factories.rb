@@ -24,4 +24,8 @@ FactoryGirl.define do
     tab_group
     sequence(:name) { |n| "Box #{n}" }
   end
+
+  factory :text_box, parent: :box do
+    content 'content'
+  end
 end
