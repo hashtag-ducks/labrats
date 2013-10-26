@@ -15,4 +15,13 @@ FactoryGirl.define do
   factory :page do
     notebook
   end
+
+  factory :tab_group do
+    page
+  end
+
+  factory :box do
+    tab_group
+    sequence(:name) { |n| "Box #{n}" }
+  end
 end
