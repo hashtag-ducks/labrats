@@ -58,5 +58,8 @@ module Labrats
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # Needed for Heroku to precompile assets properly.
+    config.initialize_on_precompile = false
   end
 end
