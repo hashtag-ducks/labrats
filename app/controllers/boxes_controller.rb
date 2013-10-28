@@ -46,7 +46,7 @@ class BoxesController < ApplicationController
   end
 
   def destroy
-    Box.find(params[:box_id]).destroy
+    Box.find(params[:id]).destroy
     respond_to do |format|
       format.json { head :ok }
     end

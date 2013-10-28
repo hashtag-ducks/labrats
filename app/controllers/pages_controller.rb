@@ -17,7 +17,7 @@ class PagesController < ApplicationController
   end
 
   def destroy
-    Page.find(params[:page_id]).destroy
+    Page.find(params[:id]).destroy
     respond_to do |format|
       format.json { head :ok }
     end

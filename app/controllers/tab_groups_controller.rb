@@ -17,7 +17,7 @@ class TabGroupsController < ApplicationController
   end
 
   def destroy
-    TabGroup.find(params[:tab_group_id]).destroy
+    TabGroup.find(params[:id]).destroy
     respond_to do |format|
       format.json { head :ok }
     end
