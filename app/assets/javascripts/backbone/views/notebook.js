@@ -30,7 +30,9 @@ Labrats.Views.Notebook = Backbone.View.extend({
         page_model.save({}, {
             success: function(response) {
                 // Create a new Page model so that it's got the correct ID.
-                page_model = new Labrats.Models.Page(response.attributes);
+                page_model = new Labrats.Models.Page(
+                    _.extend({is_owner: true}, response.attributes)
+                );
                 var pageEle = $('<li></li>');
                 self.$el.children('ul.pages').append(pageEle);
                 var pageView = new Labrats.Views.Page({

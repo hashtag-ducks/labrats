@@ -35,7 +35,9 @@ Labrats.Views.TabGroup = Backbone.View.extend({
         var self = this;
         box_model.save({}, {
             success: function(response) {
-                box_model = new Labrats.Models[type](response.attributes);
+                box_model = new Labrats.Models[type](
+                    _.extend({is_owner: true}, response.attributes)
+                );
                 var boxEle = $('<li></li>');
                 self.$el.find('ul.boxes').append(boxEle);
                 var boxView = new Labrats.Views[type]({
