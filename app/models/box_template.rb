@@ -1,5 +1,6 @@
 class BoxTemplate < ActiveRecord::Base
   belongs_to :tab_group_template
+  has_many :boxes
 
   attr_accessible :name, :tab_group_template_id, :type
 

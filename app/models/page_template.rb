@@ -1,6 +1,7 @@
 class PageTemplate < ActiveRecord::Base
   belongs_to :notebook
   has_many :tab_group_templates, dependent: :destroy
+  has_many :pages
 
   delegate :owner, :users, to: :notebook
 
