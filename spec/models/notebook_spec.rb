@@ -2,14 +2,7 @@ require 'spec_helper'
 
 describe Notebook do
   before do
-    @user = User.new(name: 'duck',
-                     email: 'duck@oberlin.edu',
-                     organization: 'Oberlin',
-                     password: 'thisisapassword',
-                     password_confirmation: 'thisisapassword')
-    @user.save
-    @notebook = Notebook.new(name: 'notebook')
-    @notebook.owner = @user
+    @notebook = FactoryGirl.create(:notebook)
   end
 
   subject { @notebook }
