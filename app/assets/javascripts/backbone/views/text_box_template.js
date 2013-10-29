@@ -1,4 +1,4 @@
-Labrats.Views.TextBox = Labrats.Views.Box.extend({
+Labrats.Views.TextBoxTemplate = Labrats.Views.BoxTemplate.extend({
     events: {
         'input .text-box-content': 'updateModel',
         'input .text-box-name': 'updateModel',
@@ -31,7 +31,7 @@ Labrats.Views.TextBox = Labrats.Views.Box.extend({
     save: function(event) {
         event.preventDefault();
         this.model.save({}, {
-            url: "/boxes/" + this.model.get('id')
+            url: "/box_templates/" + this.model.get('id')
         });
     }
 });

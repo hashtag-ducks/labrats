@@ -1,4 +1,4 @@
-class BoxesController < ApplicationController
+class BoxTemplatesController < ApplicationController
   include NotebookAccessHelper
 
   before_filter :signed_in_user
@@ -7,7 +7,7 @@ class BoxesController < ApplicationController
   respond_to :json
 
   def update
-    box = Box.find(params[:id])
+    box_template = BoxTemplate.find(params[:id])
     # WOO METAPROGRAMMING MAGIC
     #
     # To elaborate: we don't want all the attributes of the box to be
@@ -15,13 +15,13 @@ class BoxesController < ApplicationController
     # attr_accessible-ified. So we filter those out before doing the
     # update, asking the class to supply which params these actually
     # are. Neato.
-    filtered_params = params[:box].select do |k, v|
-      box.class.accessible_attributes.include? k
+    filtered_params = params[:box_template].select do |k, v|
+      box_template.class.accessible_attributes.include? k
     end
-    if box.update_attributes(filtered_params)
-      respond_with box
+    if box_template.update_attributes(filtered_params)
+      respond_with box_template
     else
-      respond_with box, status: :unprocessable_entity
+      respond_with box_template, status: :unprocessable_entity
     end
   end
 
@@ -31,28 +31,28 @@ class BoxesController < ApplicationController
     # passed along in the :type parameter. But just evaling for the
     # class is a bigass security problem, so assert that it's a
     # subclass of Box before actually instantiating it.
-    box_class = eval(params[:box][:type])
-    unless box_class < Box
+    box_template_class = eval(params[:box_template][:type])
+    unless box_template_class < BoxTemplate
       render text: "", status: :unauthorized
       return
     end
-    @box = box_class.new(params[:box])
-    check_user(@box) && return
-    if @box.save
-      render json: @box
+    @box_template = box_template_class.new(params[:box_template])
+    check_user(@box_template) && return
+    if @box_template.save
+      render json: @box_template
     else
-      render json: box, status: :unprocessable_entity
+      render json: @box_template, status: :unprocessable_entity
     end
   end
 
   def destroy
-    Box.find(params[:id]).destroy
+    BoxTemplate.find(params[:id]).destroy
     respond_to do |format|
       format.json { head :ok }
     end
   end
 
   def model_class
-    Box
+    BoxTemplate
   end
 end

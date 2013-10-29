@@ -1,4 +1,4 @@
-Labrats.Views.Box = Backbone.View.extend({
+Labrats.Views.BoxTemplate = Backbone.View.extend({
     initialize: function() {
         this.render();
     },

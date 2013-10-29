@@ -1,6 +1,6 @@
 class Notebook < ActiveRecord::Base
   has_and_belongs_to_many :users
-  has_many :pages, dependent: :destroy
+  has_many :page_templates, dependent: :destroy
 
   attr_accessible :name
 
@@ -25,10 +25,10 @@ class Notebook < ActiveRecord::Base
     # This is jank, but apparently necessary to ensure that all the
     # right JSON is in all the right places. Bleh.
     json = super(include:
-                 { pages:
+                 { page_templates:
                    { include:
-                     { tab_groups:
-                       { include: { boxes: { methods: :type } } }
+                     { tab_group_templates:
+                       { include: { box_templates: { methods: :type } } }
                      }
                    }
                  })

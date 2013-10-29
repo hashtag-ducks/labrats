@@ -1,6 +1,7 @@
 module NotebookAccessHelper
   private
 
+  # TODO: Fix Backbone models to not use `is_owner`.
   def notebook_owner
     model = self.model_class.find_by_id(params[:id])
     redirect_to root_url unless current_user?(model.owner)

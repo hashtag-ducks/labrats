@@ -1,4 +1,4 @@
-Labrats.Views.TabGroup = Backbone.View.extend({
+Labrats.Views.TabGroupTemplate = Backbone.View.extend({
     events: {
         'click .new-box': 'newBox',
         'click .delete-tab-group': 'delete'
@@ -15,7 +15,7 @@ Labrats.Views.TabGroup = Backbone.View.extend({
             is_owner: this.model.get('is_owner')
         }));
         var self = this;
-        this.model.get('boxes').forEach(function(box) {
+        this.model.get('box_templates').forEach(function(box) {
             var ele = $('<li></li>');
             self.$el.find('ul.boxes').append(ele);
             var boxView = new Labrats.Views[box.get('type')]({
@@ -29,7 +29,7 @@ Labrats.Views.TabGroup = Backbone.View.extend({
         event.preventDefault();
         var type = $(event.currentTarget).data('box-type');
         var box_model = new Labrats.Models[type]({
-            tab_group_id: this.model.get('id'),
+            tab_group_template_id: this.model.get('id'),
             type: type
         });
         var self = this;
@@ -44,7 +44,7 @@ Labrats.Views.TabGroup = Backbone.View.extend({
                     model: box_model,
                     el: boxEle
                 });
-                self.model.get('boxes').add(box_model);
+                self.model.get('box_templates').add(box_model);
             },
             error: function() {
                 console.log('error saving ' + type);

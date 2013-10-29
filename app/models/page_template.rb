@@ -1,6 +1,6 @@
-class Page < ActiveRecord::Base
+class PageTemplate < ActiveRecord::Base
   belongs_to :notebook
-  has_many :tab_groups, dependent: :destroy
+  has_many :tab_group_templates, dependent: :destroy
 
   delegate :owner, :users, to: :notebook
 
@@ -9,6 +9,6 @@ class Page < ActiveRecord::Base
   validates :notebook_id, presence: true
 
   def as_json(options={})
-    super(include: :tab_groups)
+    super(include: :tab_group_templates)
   end
 end

@@ -8,9 +8,9 @@ Labrats.Models.Notebook = Backbone.Model.extend({
      * said JSON and turn it into the correct models.
      */
     parse: function(response) {
-        response.pages = new Labrats.Collections.Pages(
-            _.map(response.pages, function(page_JSON) {
-                return new Labrats.Models.Page(
+        response.page_templates = new Labrats.Collections.PageTemplates(
+            _.map(response.page_templates, function(page_JSON) {
+                return new Labrats.Models.PageTemplate(
                     _.extend({is_owner: response.is_owner}, page_JSON),
                     {parse: true}
                 );

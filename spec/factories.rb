@@ -12,20 +12,20 @@ FactoryGirl.define do
     owner
   end
 
-  factory :page do
+  factory :page_template do
     notebook
   end
 
-  factory :tab_group do
-    page
+  factory :tab_group_template do
+    page_template
   end
 
-  factory :box do
-    tab_group
-    sequence(:name) { |n| "Box #{n}" }
+  factory :box_template do
+    tab_group_template
+    sequence(:name) { |n| "Box Template #{n}" }
   end
 
-  factory :text_box, parent: :box do
+  factory :text_box_template, parent: :box_template do
     content 'content'
   end
 end
