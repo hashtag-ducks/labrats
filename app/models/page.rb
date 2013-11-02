@@ -8,6 +8,9 @@ class Page < ActiveRecord::Base
   validates :page_template_id, presence: true
 
   def as_json(options={})
-    super(include: :tab_groups)
+    super(include:
+          { tab_groups:
+            { include: { boxes: { methods: :type } } }
+          })
   end
 end

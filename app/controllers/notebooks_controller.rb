@@ -26,6 +26,11 @@ class NotebooksController < ApplicationController
 
   def show
     @notebook = Notebook.find(params[:id])
+    if current_user?(@notebook.owner)
+      render 'show_owner'
+    else
+      render 'show_shared'
+    end
   end
 
   def destroy

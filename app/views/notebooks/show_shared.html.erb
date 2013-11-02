@@ -1,0 +1,16 @@
+<div class="notebook" id="<%= @notebook.id %>">
+  <h1><%= @notebook.name %></h1>
+  <ul class="pages">
+    <!-- Pages will attach here for rendering. -->
+  </ul>
+</div>
+
+<script type="text/javascript">
+  $(function() {
+    var notebook_model = new Labrats.Models.Notebook(<%= @notebook.to_json.html_safe %>, {parse: true});
+    var notebook_view = new Labrats.Views.Notebook({
+      model: notebook_model,
+      el: $('.notebook')
+    });
+  });
+</script>

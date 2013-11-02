@@ -1,0 +1,23 @@
+<div class="notebook" id="<%= @notebook.id %>">
+  <h1><%= @notebook.name %></h1>
+  <ul class="pages">
+    <!-- Pages will attach here for rendering. -->
+  </ul>
+  <a href="#" class="new-page">New Page</a>
+  <%= link_to "Delete this notebook", @notebook, method: :delete %>
+  <div class="access">
+    <input type="text" class="user-email" />
+    <a href="#" class="grant-access">Grant notebook access to this user.</a>
+    <a href="#" class="revoke-access">Revoke notebook access from this user.</a>
+  </div>
+</div>
+
+<script type="text/javascript">
+    $(function() {
+      var notebook_model = new Labrats.Models.Notebook(<%= @notebook.to_json(user: current_user).html_safe %>, {parse: true});
+      var notebook_view = new Labrats.Views.Notebook({
+        model: notebook_model,
+        el: $('.notebook')
+      });
+    });
+</script>

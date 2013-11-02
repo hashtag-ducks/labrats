@@ -12,6 +12,11 @@ Labrats::Application.routes.draw do
           resources :box_templates, shallow: true
         end
       end
+      resources :pages, shallow: true do
+        resources :tab_groups, shallow: true do
+          resources :boxes, shallow: true
+        end
+      end
     end
   end
   resources :sessions, only: [:new, :create, :destroy]

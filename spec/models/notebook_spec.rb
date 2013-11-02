@@ -20,8 +20,12 @@ describe Notebook do
     end
   end
 
-  it "includes pages in its JSON representation" do
-    expect(@notebook.as_json).to have_key(:page_templates)
+  it "includes page templates in its JSON representation for owners" do
+    expect(@notebook.as_json(user: @notebook.owner)).to have_key(:page_templates)
+  end
+
+  it "includes pages in its JSON representation for other users" do
+    expect(@notebook.as_json).to have_key(:pages)
   end
 
   it "destroys its pages on destroy" do
