@@ -7,8 +7,8 @@
 
 <script type="text/javascript">
   $(function() {
-    var notebook_model = new Labrats.Models.Notebook(<%= @notebook.to_json.html_safe %>, {parse: true});
-    var notebook_view = new Labrats.Views.Notebook({
+    var notebook_model = new Labrats.Models.Notebook(<%= @notebook.to_json(user: current_user).html_safe %>, {parse: true});
+    var notebook_view = new Labrats.Views.SharedNotebook({
       model: notebook_model,
       el: $('.notebook')
     });

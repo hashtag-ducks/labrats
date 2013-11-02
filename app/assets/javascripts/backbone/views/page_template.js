@@ -9,10 +9,9 @@ Labrats.Views.PageTemplate = Backbone.View.extend({
     },
 
     render: function() {
-        var tpl = $('#page-tpl').text();
+        var tpl = $('#page_template-tpl').text();
         this.$el.html(_.template(tpl, {
-            id: this.model.get('id'),
-            is_owner: this.model.get('is_owner')
+            id: this.model.get('id')
         }));
         var self = this;
         this.model.get('tab_group_templates').forEach(function(tabGroup) {
@@ -34,7 +33,7 @@ Labrats.Views.PageTemplate = Backbone.View.extend({
         tab_group_model.save({}, {
             success: function(response) {
                 tab_group_model = new Labrats.Models.TabGroupTemplate(
-                    _.extend({is_owner: true}, response.attributes)
+                    response.attributes
                 );
                 var tabGroupEle = $('<li></li>');
                 self.$el.find('.tab-groups').append(tabGroupEle);

@@ -8,14 +8,22 @@ Labrats.Models.Notebook = Backbone.Model.extend({
      * said JSON and turn it into the correct models.
      */
     parse: function(response) {
-        response.page_templates = new Labrats.Collections.PageTemplates(
-            _.map(response.page_templates, function(page_JSON) {
-                return new Labrats.Models.PageTemplate(
-                    _.extend({is_owner: response.is_owner}, page_JSON),
-                    {parse: true}
-                );
-            })
-        );
+        // If `page_templates` is a key, this is being shown to the owner.
+        if(response.page_templates) {
+          response.page_templates = new Labrats.Collections.PageTemplates(
+              _.map(response.page_templates, function(page_JSON) {
+                  return new Labrats.Models.PageTemplate(page_JSON, {parse: true});
+              })
+          );
+        }
+        // Otherwise, to a user with access.
+        else {
+            response.pages = new Labrats.Collections.Pages(
+                _.map(response.pages, function(page_JSON) {
+                    return new Labrats.Models.Page(page_JSON, {parse: true});
+                })
+            );
+        }
         return response;
     }
 });

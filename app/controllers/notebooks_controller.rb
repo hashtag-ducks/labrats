@@ -2,7 +2,6 @@ class NotebooksController < ApplicationController
   include NotebookAccessHelper
 
   before_filter :notebook_owner, only: :destroy
-  before_filter :allowed_access, only: :show
   before_filter :signed_in_user
 
   def new
@@ -26,6 +25,7 @@ class NotebooksController < ApplicationController
 
   def show
     @notebook = Notebook.find(params[:id])
+    redirect_to root_url && return unless @notebook.users.include? current_user
     if current_user?(@notebook.owner)
       render 'show_owner'
     else

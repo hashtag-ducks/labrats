@@ -1,0 +1,8 @@
+<div class="tab-group" id="<%= id %>">
+  <h4>Tab Group <%= id %></h4>
+  <ul class="boxes">
+    <!-- Boxes attach here -->
+  </ul>
+  <a href="#" class="new-box" data-box-type="TextBoxTemplate">New Box</a>
+  <a href="#" class="delete-tab-group">Delete this tab group</a>
+</div>

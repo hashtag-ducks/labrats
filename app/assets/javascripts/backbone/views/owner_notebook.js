@@ -1,4 +1,4 @@
-Labrats.Views.Notebook = Backbone.View.extend({
+Labrats.Views.OwnerNotebook = Backbone.View.extend({
     events: {
         'click .new-page': 'newPage',
         'click .grant-access': 'grantAccess',

@@ -1,6 +1,6 @@
 class Box < ActiveRecord::Base
   belongs_to :box_template
-  has_one :tab_group
+  belongs_to :tab_group
 
   attr_accessible :name, :type
 

@@ -23,10 +23,7 @@ Labrats.Models.PageTemplate = Backbone.Model.extend({
     parse: function(response) {
         response.tab_group_templates = new Labrats.Collections.TabGroupTemplates(
             _.map(response.tab_group_templates, function(tab_group_JSON) {
-                return new Labrats.Models.TabGroupTemplate(
-                    _.extend({is_owner: response.is_owner}, tab_group_JSON)
-                    , {parse: true}
-                );
+                return new Labrats.Models.TabGroupTemplate(tab_group_JSON, {parse: true});
             })
         );
         return response;

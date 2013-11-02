@@ -1,10 +1,4 @@
 <div class="page" id="page-<%= id %>">
   <h3>Page: <%= id %></h3>
-  <ul class="tab-groups">
-    <!-- Tab groups attach here -->
-  </ul>
-  <% if(is_owner) { %>
-    <a href="#" class="new-tab-group">New Tab Group</a>
-    <a href="#" class="delete-page">Delete this page</a>
-  <% } %>
+  <ul class="tab-groups"></ul>
 </div>

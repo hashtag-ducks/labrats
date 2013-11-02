@@ -1,6 +1,6 @@
 class TabGroup < ActiveRecord::Base
   belongs_to :tab_group_template
-  has_one :page
+  belongs_to :page
   has_many :boxes, dependent: :destroy
 
   delegate :notebook, :user, to: :page
