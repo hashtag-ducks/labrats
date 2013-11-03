@@ -1,0 +1,7 @@
+<div class="box draw-box" id="draw-box-<%= id %>">
+  <h5>Draw Box <%= id %>: <%= name %></h5>
+  <input type="text" class="draw-box-name" value="<%= name %>" />
+  <canvas class="draw-box-image"></canvas>
+  <a href="#" class="save-box">Save Box</a>
+  <a href="#" class="delete-box">Delete Box</a>
+</div>

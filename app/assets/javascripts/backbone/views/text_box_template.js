@@ -25,12 +25,5 @@ Labrats.Views.TextBoxTemplate = Labrats.Views.BoxTemplate.extend({
         event.preventDefault();
         this.model.set('content', this.$el.find('.text-box-content').val());
         this.model.set('name', this.$el.find('.text-box-name').val());
-    },
-
-    save: function(event) {
-        event.preventDefault();
-        this.model.save({}, {
-            url: "/box_templates/" + this.model.get('id')
-        });
     }
 });
