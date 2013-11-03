@@ -8,7 +8,7 @@ module NotebookAccessHelper
 
   def allowed_access
     model = self.model_class.find_by_id(params[:id])
-    redirect_to root_url unless model.users.include?(current_user)
+    redirect_to root_url unless current_user?(model.user)
   end
 
   def check_user(model)

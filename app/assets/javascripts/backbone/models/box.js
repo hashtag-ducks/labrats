@@ -1,6 +1,6 @@
 Labrats.Models.Box = Backbone.Model.extend({
     url: function() {
-        return '/tab_groups/' + this.get('tab_group_id') + '/boxes';
+        return '/boxes/' + this.get('id');
     },
 
     defaults: {
@@ -9,13 +9,13 @@ Labrats.Models.Box = Backbone.Model.extend({
 
     toJSON: function() {
         return {
-            box: this.attributes
+          box: this.attributes  
         };
     },
 
     validate: function(attrs) {
         if(attrs.tab_group_id === 0) {
-            return "Tab group ID can't be 0";
+            return "Tab group template ID can't be 0";
         }
     }
 });

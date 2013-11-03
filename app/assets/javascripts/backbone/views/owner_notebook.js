@@ -1,4 +1,4 @@
-Labrats.Views.Notebook = Backbone.View.extend({
+Labrats.Views.OwnerNotebook = Backbone.View.extend({
     events: {
         'click .new-page': 'newPage',
         'click .grant-access': 'grantAccess',
@@ -11,10 +11,10 @@ Labrats.Views.Notebook = Backbone.View.extend({
 
     render: function() {
         var self = this;
-        this.model.get('pages').forEach(function(page) {
+        this.model.get('page_templates').forEach(function(page) {
             var ele = $('<li></li>');
             self.$el.children('ul.pages').append(ele);
-            var view = new Labrats.Views.Page({
+            var view = new Labrats.Views.PageTemplate({
                 model: page,
                 el: ele
             });
@@ -23,23 +23,23 @@ Labrats.Views.Notebook = Backbone.View.extend({
 
     newPage: function(event) {
         event.preventDefault();
-        var page_model = new Labrats.Models.Page({
+        var page_model = new Labrats.Models.PageTemplate({
             notebook_id: this.$el.attr('id')
         });
         var self = this;
         page_model.save({}, {
             success: function(response) {
                 // Create a new Page model so that it's got the correct ID.
-                page_model = new Labrats.Models.Page(
+                page_model = new Labrats.Models.PageTemplate(
                     _.extend({is_owner: true}, response.attributes)
                 );
                 var pageEle = $('<li></li>');
                 self.$el.children('ul.pages').append(pageEle);
-                var pageView = new Labrats.Views.Page({
+                var pageView = new Labrats.Views.PageTemplate({
                     model: page_model,
                     el: pageEle
                 });
-                self.model.get('pages').add(page_model);
+                self.model.get('page_templates').add(page_model);
             },
             error: function() {
                 console.log('error saving page');

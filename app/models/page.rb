@@ -1,14 +1,16 @@
 class Page < ActiveRecord::Base
-  belongs_to :notebook
+  belongs_to :page_template
+  belongs_to :user
   has_many :tab_groups, dependent: :destroy
 
-  delegate :owner, :users, to: :notebook
+  delegate :notebook, to: :page_template
 
-  attr_accessible :notebook_id
-
-  validates :notebook_id, presence: true
+  validates :page_template_id, presence: true
 
   def as_json(options={})
-    super(include: :tab_groups)
+    super(include:
+          { tab_groups:
+            { include: { boxes: { methods: :type } } }
+          })
   end
 end

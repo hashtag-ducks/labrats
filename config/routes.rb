@@ -1,15 +1,20 @@
 Labrats::Application.routes.draw do
   # Match these first, since Backbone doesn't deal with nested
   # resources well
-  match 'notebooks/:notebook_id/pages/:id', to: 'pages#destroy', via: :delete
-  match 'pages/:page_id/tab_groups/:id', to: 'tab_groups#destroy', via: :delete
-  match 'tab_groups/:box_id/boxes/:id', to: 'boxes#destroy', via: :delete
+  match 'notebooks/:notebook_id/page_templates/:id', to: 'page_templates#destroy', via: :delete
+  match 'page_templates/:page_template_id/tab_group_templates/:id', to: 'tab_group_templates#destroy', via: :delete
+  match 'tab_group_templates/:box_template_id/box_templates/:id', to: 'box_templates#destroy', via: :delete
 
   resources :users do
     resources :notebooks, shallow: true do
-      resources :pages, shallow: true do
-        resources :tab_groups, shallow: true do
-          resources :boxes, shallow: true
+      resources :page_templates, shallow: true do
+        resources :tab_group_templates, shallow: true do
+          resources :box_templates, shallow: true
+        end
+      end
+      resources :pages, only: :show, shallow: true do
+        resources :tab_groups, only: :show, shallow: true do
+          resources :boxes, only: [:show, :update], shallow: true
         end
       end
     end

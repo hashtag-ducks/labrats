@@ -1,11 +1,9 @@
 class TabGroup < ActiveRecord::Base
+  belongs_to :tab_group_template
   belongs_to :page
   has_many :boxes, dependent: :destroy
 
-  delegate :notebook, to: :page
-  delegate :owner, :users, to: :notebook
-
-  attr_accessible :page_id
+  delegate :notebook, :user, to: :page
 
   validates :page_id, presence: true
 
