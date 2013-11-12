@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4ff2ce96-07fc-443b-8036-f2e6d939e177" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/backbone/views/tab_group_template.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/backbone/views/tab_group_template.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/notebooktemplates.css.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/notebooktemplates.css.scss" />
     </list>
     <ignored path="labrats.iws" />
@@ -43,7 +42,16 @@
       <file leaf-file-name="tab_group_template.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/backbone/views/tab_group_template.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="69" selection-start="851" selection-end="851" vertical-scroll-proportion="-0.35942492">
+            <state line="18" column="69" selection-start="851" selection-end="851" vertical-scroll-proportion="0.44701988">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="notebooktemplates.css.scss" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/notebooktemplates.css.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="35" column="33" selection-start="681" selection-end="681" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -76,8 +84,8 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/app/assets/javascripts/backbone/templates/draw_box_template.underscore" />
-        <option value="$PROJECT_DIR$/app/assets/stylesheets/notebooktemplates.css.scss" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/backbone/views/tab_group_template.js" />
+        <option value="$PROJECT_DIR$/app/assets/stylesheets/notebooktemplates.css.scss" />
       </list>
     </option>
   </component>
@@ -614,14 +622,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/notebooktemplates.css.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="1" selection-start="682" selection-end="682" vertical-scroll-proportion="0.8758278">
+        <state line="35" column="33" selection-start="681" selection-end="681" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/backbone/views/tab_group_template.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="69" selection-start="851" selection-end="851" vertical-scroll-proportion="-0.35942492">
+        <state line="18" column="69" selection-start="851" selection-end="851" vertical-scroll-proportion="0.44701988">
           <folding />
         </state>
       </provider>
