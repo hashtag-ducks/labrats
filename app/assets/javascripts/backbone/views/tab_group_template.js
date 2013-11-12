@@ -1,11 +1,22 @@
 Labrats.Views.TabGroupTemplate = Backbone.View.extend({
     events: {
         'click .new-box': 'newBox',
-        'click .delete-tab-group': 'delete'
+        'click .delete-tab-group': 'delete',
+        'click ul.boxes li a': 'switch'
     },
 
     initialize: function() {
         this.render();
+        $("ul.boxes li a").each(function() {
+            $(this).addClass('inactive').removeClass('active');
+        });
+        $("ul.boxes li a").first().addClass("active").removeClass("inactive");
+        $("div.box").addClass('hidden').removeClass('displayed');
+        var id = $("ul.boxes li a").first().attr('id');
+        var type = id.substr(0, id.length-1);
+        id = id.substring(id.length-1);
+        type = type.match(/[A-Z][a-z]*/g).map(function(s) { return s.toLowerCase(); }).join("-").replace(/-template/, '');
+        $("#"+type+"-"+id).addClass('displayed').removeClass('hidden');
     },
 
     render: function() {
@@ -16,7 +27,7 @@ Labrats.Views.TabGroupTemplate = Backbone.View.extend({
         var self = this;
         this.model.get('box_templates').forEach(function(box) {
             var id = box.get('id');
-            var tab = $('<li><a href="" class="inactive" id="'+box.get('type')+box.get('id')+'">'+box.get('name')+'</a></li>');
+            var tab = $('<li><a href="#" id="'+box.get('type')+box.get('id')+'">'+box.get('name')+'</a></li>');
             var ele = $('<div></div>');
             self.$el.find('ul.boxes').append(tab);
             self.$el.find('ul.boxes').after(ele);
@@ -25,6 +36,7 @@ Labrats.Views.TabGroupTemplate = Backbone.View.extend({
                 el: ele
             });
         });
+
     },
 
     newBox: function(event) {
@@ -60,5 +72,20 @@ Labrats.Views.TabGroupTemplate = Backbone.View.extend({
             url: this.model.url() + '/' + this.model.get('id')
         });
         this.$el.remove();
+    },
+
+    switch: function(event) {
+        event.preventDefault();
+        $("ul.boxes li a").each(function() {
+           $(this).addClass('inactive').removeClass('active');
+        });
+
+        $(event.currentTarget).addClass('active').removeClass('inactive');
+        $("div.box").addClass('hidden').removeClass('displayed');
+        var id = $(event.currentTarget).attr('id');
+        var type = id.substr(0, id.length-1);
+        id = id.substring(id.length-1);
+        type = type.match(/[A-Z][a-z]*/g).map(function(s) { return s.toLowerCase(); }).join("-").replace(/-template/, '');
+        $("#"+type+"-"+id).addClass('displayed').removeClass('hidden');
     }
 });
