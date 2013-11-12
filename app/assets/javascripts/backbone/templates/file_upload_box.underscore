@@ -1,5 +1,4 @@
 <div class="draw file-upload-box" id="file-upload-box-<%= id %>">
-  <h5>File Upload Box <%= id %>: <%= name %></h5>
   <form method="POST" name="box" action="/boxes/<%= id %>/files" enctype="multipart/form-data">
     <input type="file" name="file" class="file-upload-box-file" />
   </form>
