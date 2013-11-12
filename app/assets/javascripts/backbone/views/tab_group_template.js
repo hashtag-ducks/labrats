@@ -15,8 +15,11 @@ Labrats.Views.TabGroupTemplate = Backbone.View.extend({
         }));
         var self = this;
         this.model.get('box_templates').forEach(function(box) {
-            var ele = $('<li></li>');
-            self.$el.find('ul.boxes').append(ele);
+            var id = box.get('id');
+            var tab = $('<li><a href="" class="inactive" id="'+box.get('type')+box.get('id')+'">'+box.get('name')+'</a></li>');
+            var ele = $('<div></div>');
+            self.$el.find('ul.boxes').append(tab);
+            self.$el.find('ul.boxes').after(ele);
             var boxView = new Labrats.Views[box.get('type')]({
                 model: box,
                 el: ele
