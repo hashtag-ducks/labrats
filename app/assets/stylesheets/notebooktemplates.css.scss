@@ -1,0 +1,33 @@
+ul.boxes {
+    margin:0px;
+    padding:0px;
+}
+
+ul.boxes li {
+    list-style:none;
+    display:inline;
+}
+
+ul.boxes li a {  
+    background-color:#464c54;  
+    color:#ffebb5;  
+    padding:8px 14px 8px 14px;  
+    text-decoration:none;  
+    font-size:9px;  
+    font-family:Verdana, Arial, Helvetica, sans-serif;  
+    font-weight:bold;  
+    text-transform:uppercase;  
+    border:1px solid #464c54;   
+}  
+
+ul.boxes li a:hover {  
+    background-color:#2f343a;  
+    border-color:#2f343a;  
+}
+
+ul.boxes li a.active {  
+    background-color:#ffffff;  
+    color:#282e32;  
+    border:1px solid #464c54;   
+    border-bottom: 1px solid #ffffff;  
+}  
