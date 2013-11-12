@@ -1,8 +1,11 @@
 Labrats.Views.DrawBox = Labrats.Views.Box.extend({
     events: {
-        'click .draw-box-image': 'canvasClick',
         'click .clear-image': 'clearImage',
-        'click .save-box': 'save'
+        'click .save-box': 'save',
+        'mousedown .draw-box-image': 'startDragging',
+        'mouseup .draw-box-image': 'stopDragging',
+        'mousemove .draw-box-image': 'canvasClick',
+        'mouseout .draw-box-image': 'stopDragging'
     },
 
     initialize: function() {
@@ -22,14 +25,39 @@ Labrats.Views.DrawBox = Labrats.Views.Box.extend({
     },
 
     canvasClick: function(event) {
-        var canvas = this.$el.find('canvas')[0];
-        var ctx = canvas.getContext('2d');
-        var x = event.offsetX;
-        var y = event.offsetY;
-        ctx.fillStyle = 'rgb(0, 0, 0)';
-        ctx.arc(x, y, 10, 0, 2*Math.PI);
-        ctx.fill();
-        ctx.closePath();
+        if(this.isDragging) {
+            var canvas = this.$el.find('canvas')[0];
+            var ctx = canvas.getContext('2d');
+            var x = event.offsetX,
+                y = event.offsetY;
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(this.x, this.y);
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            this.x = x;
+            this.y = y;
+        }
+    },
+
+    isDragging: false,
+    x: 0,
+    y: 0,
+
+    startDragging: function(event) {
+        this.isDragging = true;
+        this.x = event.offsetX;
+        this.y = event.offsetY;
+    },
+
+    stopDragging: function(event) {
+        this.isDragging = false;
+        this.x = event.offsetX;
+        this.y = event.offsetY;
+    },
+
+    stopDragging: function(event) {
+        this.isDragging = false;
     },
 
     clearImage: function(event) {
