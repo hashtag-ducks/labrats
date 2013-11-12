@@ -33,7 +33,7 @@ gem 'jquery-rails'
 
 gem 'bcrypt-ruby', '~> 3.0.0'
 
-gem 'bootstrap-sass', '~> 2.3.2.1'
+# REMOVED bootstrap gem; directly copying into vendor directory lets us use bootstrap 3
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

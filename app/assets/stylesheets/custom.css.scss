@@ -1,7 +1,12 @@
 @import "bootstrap";
+@import "colors";
 
 body {
-  background-color: white;
+  background-color: $background;
+}
+
+.navbar-brand {
+  color: $primary !important;
 }
 
 canvas {

@@ -10,5 +10,6 @@
  *
  *= require_self
  *= require colors
+ *= require bootstrap
  *= require_tree .
  */

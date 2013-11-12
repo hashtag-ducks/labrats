@@ -15,4 +15,5 @@
 //= require underscore
 //= require backbone
 //= require jquery.form.min
+//= require bootstrap
 //= require_directory ./backbone

@@ -1,0 +1,35 @@
+<header class="navbar navbar-inverse navbar-static-top" role="banner">
+  <div class="container">
+    <!-- Group brand and toggle together -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <% if signed_in? %>
+        <%= link_to "Labrats", current_user, :class => 'navbar-brand' %>
+      <% else %>
+        <%= link_to "Labrats", root_path, :class => 'navbar-brand' %>
+      <% end %>
+    </div>
+
+    <!-- Links, forms, and other content t.b. toggled -->
+    <nav class="collapse navbar-collapse navbar-ex1-collapse" role="navigation">
+      <ul class="nav navbar-nav">
+        <li><%= link_to "About", '#' %></li>
+        <% if signed_in? %>
+            <li><%= link_to "Notebooks", user_notebooks_url(current_user) %></li>
+            <li><%= link_to "Profile", current_user %></li>
+            <li><%= link_to "Sign out", signout_path, :method => "delete" %></li>
+        <% else %>
+            <li><%= link_to "Sign in", signin_path %></li>
+            <li><%= link_to "Sign up", signup_path %></li>
+        <% end %>
+      </ul>
+    </nav>
+    <!-- End collapsible portion. -->
+
+  </div>
+</header>
