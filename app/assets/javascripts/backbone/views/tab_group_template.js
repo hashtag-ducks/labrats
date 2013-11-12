@@ -81,13 +81,12 @@ Labrats.Views.TabGroupTemplate = Backbone.View.extend({
         event.preventDefault();
         var tab = this.$el.find('ul.boxes li a.active');
         var parsedID = this.parseID(tab.attr('id'));
-        var ele = this.$el.find('#' + parsedID[0] + parsedID[1]);
         var box = this.findBox(parseInt(parsedID[1]));
         this.model.get('box_templates').remove(box);
         box.destroy({
             url: box.url() + '/' + box.get('id')
         });
-        ele.remove();
+        tab.parent().remove();
         var type = parsedID[0].match(/[A-Z][a-z]*/g).map(function(s) { return s.toLowerCase(); }).join("-").replace(/-template/, '');
         this.$el.find('#' + type + '-' + parsedID[1]).remove();
         if(this.model.get('box_templates').length > 0) {
