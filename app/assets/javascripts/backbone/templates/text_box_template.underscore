@@ -1,5 +1,4 @@
 <div class="box text-box" id="text-box-<%= id %>">
-  <input type="text" class="text-box-name" value="<%= name %>" />
   <textarea class="text-box-content"><%= content %></textarea>
   <a href="#" class="save-box">Save Box</a>
   <a href="#" class="delete-box">Delete Box</a>

@@ -2,7 +2,9 @@ Labrats.Views.TabGroupTemplate = Backbone.View.extend({
     events: {
         'click .new-box': 'newBox',
         'click .delete-tab-group': 'delete',
-        'click ul.boxes li a': 'switch'
+        'click ul.boxes li a': 'switch',
+        'dblclick ul.boxes li a': 'editName',
+        'input a[contenteditable=true]': 'setName'
     },
 
     initialize: function() {
@@ -35,6 +37,7 @@ Labrats.Views.TabGroupTemplate = Backbone.View.extend({
                 model: box,
                 el: ele
             });
+            self.$el.find('#' + box.get('type') + box.get('id')).text(box.get('name'));
         });
 
     },
@@ -52,12 +55,22 @@ Labrats.Views.TabGroupTemplate = Backbone.View.extend({
                 box_model = new Labrats.Models[type](
                     response.attributes
                 );
-                var boxEle = $('<li></li>');
-                self.$el.find('ul.boxes').append(boxEle);
+                var tab = $(
+                    '<li><a href="#" id="' +
+                        box_model.get('type') +
+                        box_model.get('id') +
+                        '">' +
+                        box_model.get('name') +
+                        '</a></li>'
+                );
+                var boxEle = $('<div></div>');
+                self.$el.find('ul.boxes').append(tab);
+                self.$el.find('ul.boxes').after(boxEle);
                 var boxView = new Labrats.Views[type]({
                     model: box_model,
                     el: boxEle
                 });
+                boxEle.find('.box').addClass('hidden');
                 self.model.get('box_templates').add(box_model);
             },
             error: function() {
@@ -91,5 +104,22 @@ Labrats.Views.TabGroupTemplate = Backbone.View.extend({
 
     parseID: function(s) {
         return [s.match(/[^\d]+/)[0], s.match(/\d+/)[0]];
+    },
+
+    editName: function(event) {
+        event.preventDefault();
+        var ele = $(event.currentTarget);
+        ele.attr('contenteditable', 'true');
+    },
+
+    setName: function(event) {
+        event.preventDefault();
+        var ele = $(event.currentTarget);
+        var text = ele.text();
+        var id = parseInt(this.parseID(ele.attr('id'))[1]);
+        var box = this.model.get('box_templates').find(function(box) {
+            return box.get('id') === id;
+        });
+        box.set('name', text);
     }
 });
