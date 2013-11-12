@@ -8,6 +8,11 @@ Labrats.Views.TabGroupTemplate = Backbone.View.extend({
         'blur a[contenteditable=true]': 'setName'
     },
 
+    tabTemplate: '<li>' +
+        '<a href="#" id=<%= type %><%= id %>><%= name %></a>' +
+        '<span class="glyphicon glyphicon-remove"></span>' +
+        '</li>',
+
     initialize: function() {
         this.render();
         this.$el.find("ul.boxes li a").each(function() {
@@ -26,7 +31,11 @@ Labrats.Views.TabGroupTemplate = Backbone.View.extend({
         var self = this;
         this.model.get('box_templates').forEach(function(box) {
             var id = box.get('id');
-            var tab = $('<li><a href="#" id="'+box.get('type')+box.get('id')+'">'+box.get('name')+'</a><span class="glyphicon glyphicon-remove"></span></li>');
+            var tab = $(_.template(self.tabTemplate, {
+                type: box.get('type'),
+                id: box.get('id'),
+                name: box.get('name')
+            }));
             var ele = $('<div></div>');
             self.$el.find('ul.boxes').append(tab);
             self.$el.find('ul.boxes').after(ele);
@@ -52,14 +61,11 @@ Labrats.Views.TabGroupTemplate = Backbone.View.extend({
                 box_model = new Labrats.Models[type](
                     response.attributes
                 );
-                var tab = $(
-                    '<li><a href="#" id="' +
-                        box_model.get('type') +
-                        box_model.get('id') +
-                        '">' +
-                        box_model.get('name') +
-                        '</a></li>'
-                );
+                var tab = _.template(self.tabTemplate, {
+                    type: box_model.get('type'),
+                    id: box_model.get('id'),
+                    name: box_model.get('name')
+                });
                 var boxEle = $('<div></div>');
                 self.$el.find('ul.boxes').append(tab);
                 self.$el.find('ul.boxes').after(boxEle);
