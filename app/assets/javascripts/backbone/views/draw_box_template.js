@@ -1,7 +1,8 @@
 Labrats.Views.DrawBoxTemplate = Labrats.Views.BoxTemplate.extend({
     events: {
         'input .draw-box-name': 'updateModel',
-        'click .save-box': 'save'
+        'click .save-box': 'save',
+        'click .delete-box': 'delete'
     },
 
     updateModel: function(event) {

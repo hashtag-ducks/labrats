@@ -5,5 +5,6 @@
   </ul>
   <a href="#" class="new-box" data-box-type="TextBoxTemplate">New Text Box</a>
   <a href="#" class="new-box" data-box-type="DrawBoxTemplate">New Draw Box</a>
+  <a href="#" class="new-box" data-box-type="FileUploadBoxTemplate">New File Upload Box</a>
   <a href="#" class="delete-tab-group">Delete this tab group</a>
 </div>
