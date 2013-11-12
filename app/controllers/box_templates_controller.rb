@@ -2,7 +2,7 @@ class BoxTemplatesController < ApplicationController
   include NotebookAccessHelper
 
   before_filter :signed_in_user
-  before_filter :notebook_owner
+  before_filter :notebook_owner, only: [:update, :delete]
 
   respond_to :json
 

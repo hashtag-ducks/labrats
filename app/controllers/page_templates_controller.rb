@@ -2,12 +2,12 @@ class PageTemplatesController < ApplicationController
   include NotebookAccessHelper
 
   before_filter :signed_in_user
-  before_filter :notebook_owner
+  before_filter :notebook_owner, only: :destroy
 
   respond_to :json
 
   def create
-    @page_template = PageTemplate.new(params[:page])
+    @page_template = PageTemplate.new(params[:page_template])
     check_user(@page_template) && return
     if @page_template.save
       respond_with @page_template

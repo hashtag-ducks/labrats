@@ -2,7 +2,7 @@ class TabGroupTemplatesController < ApplicationController
   include NotebookAccessHelper
 
   before_filter :signed_in_user
-  before_filter :notebook_owner
+  before_filter :notebook_owner, only: :destroy
 
   respond_to :json
 

@@ -5,7 +5,7 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-  <% ["page_template", "tab_group_template", "text_box_template", "page", "tab_group", "text_box"].each do |template_name| %>
+  <% ["page_template", "tab_group_template", "text_box_template", "draw_box_template", "page", "tab_group", "text_box", "draw_box"].each do |template_name| %>
     <script type="text/template" id="<%= template_name %>-tpl">
       <%= File.read("app/assets/javascripts/backbone/templates/#{template_name}.underscore").html_safe %>
     </script>
