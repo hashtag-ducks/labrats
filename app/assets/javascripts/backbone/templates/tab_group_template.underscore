@@ -3,6 +3,7 @@
   <ul class="boxes">
     <!-- Boxes attach here -->
   </ul>
+  <a href="#" class="delete-box">Delete Current Box</a>
   <a href="#" class="new-box" data-box-type="TextBoxTemplate">New Text Box</a>
   <a href="#" class="new-box" data-box-type="DrawBoxTemplate">New Draw Box</a>
   <a href="#" class="new-box" data-box-type="FileUploadBoxTemplate">New File Upload Box</a>

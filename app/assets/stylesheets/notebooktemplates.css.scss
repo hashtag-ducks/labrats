@@ -1,4 +1,4 @@
-/* variables */
+/* color variables */
 $text: #010101;
 $lightGrey: #EFEFE8;
 $medGrey: #D7D5C6;
@@ -10,36 +10,70 @@ $yelThree: #F4E4A8;
 $greenYellow: #D5DA84;
 $lightBlue: #D5EFFC;
 
+/* size variables */
+$boxHeight: 220px;
+
 ul.boxes {
     margin:0px;
     padding:0px;
     & li {
         list-style:none;
         display:inline;
+        background-color: $lightGrey;
         & a {
-            background-color: $lightGrey;
             color: $text;
-            padding:8px 14px 8px 14px;
-            text-decoration:none;
+            text-decoration: none;
             font-size:9px;
             font-family:Verdana, Arial, Helvetica, sans-serif;
             font-weight:bold;
             text-transform:uppercase;
-            border:1px solid $medGrey;
+            &[contenteditable=true] {
+                background-color: #f00;
+                width: 100%;
+            }
+        }
+        padding:8px 14px 8px 14px;
+        border:1px solid $medGrey;
+        &:hover {
+            background-color: $lightGreyHover;
+            border-color: $medGrey;
+        }
+        & span {
+            font-size: 7px;
             &:hover {
-                background-color: $lightGreyHover;
-                border-color: $medGrey;
+                background-color: #f00;
             }
-            &.active {
-                background-color:#ffffff;
-                color:#282e32;
-                border:1px solid #464c54;
-                border-bottom: 1px solid #ffffff;
-            }
+        }
+        &.active {
+            background-color:#ffffff;
+            color:#282e32;
+            border:1px solid #464c54;
+            border-bottom: 1px solid #ffffff;
         }
     }
 }
 
 div.hidden {
     display:none;
+}
+
+.box {
+    margin: 10px;
+    padding: 0px;
+    height: $boxHeight;
+    position: relative;
+    & textarea {
+        height: $boxHeight - 50px;
+        width: 90%;
+    }
+    & canvas {
+        border-style: solid;
+        border-width: 1px;
+        width: 90%;
+        height: $boxHeight - 50px;
+    }
+    & ul {
+        position: absolute;
+        bottom: 0px;
+    }
 }

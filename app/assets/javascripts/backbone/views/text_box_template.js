@@ -2,8 +2,7 @@ Labrats.Views.TextBoxTemplate = Labrats.Views.BoxTemplate.extend({
     events: {
         'input .text-box-content': 'updateModel',
         'input .text-box-name': 'updateModel',
-        'click .save-box': 'save',
-        'click .delete-box': 'delete'
+        'click .save-box': 'save'
     },
 
     initialize: function() {

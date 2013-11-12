@@ -1,7 +1,6 @@
 Labrats.Views.DrawBoxTemplate = Labrats.Views.BoxTemplate.extend({
     events: {
-        'click .save-box': 'save',
-        'click .delete-box': 'delete'
+        'click .save-box': 'save'
     },
 
     initialize: function() {

@@ -4,7 +4,8 @@ Labrats.Models.BoxTemplate = Backbone.Model.extend({
     },
 
     defaults: {
-        tab_group_template_id: 0
+        tab_group_template_id: 0,
+        name: 'New Box'
     },
 
     toJSON: function() {
