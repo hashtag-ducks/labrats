@@ -7,14 +7,14 @@ Labrats.Views.TabGroupTemplate = Backbone.View.extend({
 
     initialize: function() {
         this.render();
-        $("ul.boxes li a").each(function() {
+        this.$el.find("ul.boxes li a").each(function() {
             $(this).addClass('inactive').removeClass('active');
         });
-        $("ul.boxes li a").first().addClass("active").removeClass("inactive");
-        $("div.box").addClass('hidden').removeClass('displayed');
-        var id = $("ul.boxes li a").first().attr('id');
-        var type = id.substr(0, id.length-1);
-        id = id.substring(id.length-1);
+        this.$el.find("ul.boxes li a").first().addClass("active").removeClass("inactive");
+        this.$el.find("div.box").addClass('hidden').removeClass('displayed');
+        var parsedID = this.parseID(this.$el.find("ul.boxes li a").first().attr('id'));
+        var type = parsedID[0];
+        var id = parsedID[1];
         type = type.match(/[A-Z][a-z]*/g).map(function(s) { return s.toLowerCase(); }).join("-").replace(/-template/, '');
         $("#"+type+"-"+id).addClass('displayed').removeClass('hidden');
     },
@@ -76,16 +76,20 @@ Labrats.Views.TabGroupTemplate = Backbone.View.extend({
 
     switch: function(event) {
         event.preventDefault();
-        $("ul.boxes li a").each(function() {
+        this.$el.find("ul.boxes li a").each(function() {
            $(this).addClass('inactive').removeClass('active');
         });
 
         $(event.currentTarget).addClass('active').removeClass('inactive');
-        $("div.box").addClass('hidden').removeClass('displayed');
-        var id = $(event.currentTarget).attr('id');
-        var type = id.substr(0, id.length-1);
-        id = id.substring(id.length-1);
+        this.$el.find("div.box").addClass('hidden').removeClass('displayed');
+        var parsedID = this.parseID($(event.currentTarget).attr('id'));
+        var type = parsedID[0];
+        var id = parsedID[1];
         type = type.match(/[A-Z][a-z]*/g).map(function(s) { return s.toLowerCase(); }).join("-").replace(/-template/, '');
         $("#"+type+"-"+id).addClass('displayed').removeClass('hidden');
+    },
+
+    parseID: function(s) {
+        return [s.match(/[^\d]+/)[0], s.match(/\d+/)[0]];
     }
 });
