@@ -13,35 +13,31 @@ $lightBlue: #D5EFFC;
 ul.boxes {
     margin:0px;
     padding:0px;
-}
-
-ul.boxes li {
-    list-style:none;
-    display:inline;
-}
-
-ul.boxes li a {  
-    background-color: $lightGrey;
-    color: $text;
-    padding:8px 14px 8px 14px;  
-    text-decoration:none;  
-    font-size:9px;  
-    font-family:Verdana, Arial, Helvetica, sans-serif;  
-    font-weight:bold;  
-    text-transform:uppercase;  
-    border:1px solid $medGrey;
-}  
-
-ul.boxes li a:hover {  
-    background-color: $lightGreyHover;
-    border-color: $medGrey;
-}
-
-ul.boxes li a.active {  
-    background-color:#ffffff;  
-    color:#282e32;  
-    border:1px solid #464c54;   
-    border-bottom: 1px solid #ffffff;  
+    & li {
+        list-style:none;
+        display:inline;
+        & a {
+            background-color: $lightGrey;
+            color: $text;
+            padding:8px 14px 8px 14px;
+            text-decoration:none;
+            font-size:9px;
+            font-family:Verdana, Arial, Helvetica, sans-serif;
+            font-weight:bold;
+            text-transform:uppercase;
+            border:1px solid $medGrey;
+            &:hover {
+                background-color: $lightGreyHover;
+                border-color: $medGrey;
+            }
+            &.active {
+                background-color:#ffffff;
+                color:#282e32;
+                border:1px solid #464c54;
+                border-bottom: 1px solid #ffffff;
+            }
+        }
+    }
 }
 
 div.hidden {
