@@ -23,6 +23,15 @@ class BoxesController < ApplicationController
     end
   end
 
+  def upload_file
+    @box = Box.find(params[:id])
+    @box.file = params[:file].read
+    @box.save
+    respond_to do |format|
+      format.json { head :ok }
+    end
+  end
+
   def model_class
     Box
   end

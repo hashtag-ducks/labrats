@@ -5,6 +5,9 @@ Labrats::Application.routes.draw do
   match 'page_templates/:page_template_id/tab_group_templates/:id', to: 'tab_group_templates#destroy', via: :delete
   match 'tab_group_templates/:box_template_id/box_templates/:id', to: 'box_templates#destroy', via: :delete
 
+  # For file uploads
+  match 'boxes/:id/files', to: 'boxes#upload_file', via: :post
+
   resources :users do
     resources :notebooks, shallow: true do
       resources :page_templates, shallow: true do

@@ -1,0 +1,3 @@
+class FileUploadBoxTemplate < BoxTemplate
+
+end
