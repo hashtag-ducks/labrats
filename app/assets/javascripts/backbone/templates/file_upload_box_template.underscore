@@ -1,4 +1,4 @@
-<div class="draw file-upload-box" id="file-upload-box-<%= id %>">
+<div class="box file-upload-box" id="file-upload-box-<%= id %>">
   <input type="file" class="file-upload-box-input" />
   <ul>
     <li><a href="#" class="save-box">Save Box</a></li>
