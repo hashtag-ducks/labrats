@@ -3,14 +3,14 @@ Labrats.Views.TabGroupTemplate = Backbone.View.extend({
         'click .new-box': 'newBox',
         'click .delete-box': 'deleteBox',
         'click .delete-tab-group': 'delete',
-        'click ul.boxes li a': 'switch',
+        'click ul.boxes li': 'switch',
         'dblclick ul.boxes li a': 'editName',
         'blur a[contenteditable=true]': 'setName'
     },
 
     tabTemplate: '<li>' +
         '<a href="#" id=<%= type %><%= id %>><%= name %></a>' +
-        '<span class="glyphicon glyphicon-remove"></span>' +
+        '<span class="glyphicon glyphicon-remove delete-box"></span>' +
         '</li>',
 
     initialize: function() {
@@ -85,7 +85,7 @@ Labrats.Views.TabGroupTemplate = Backbone.View.extend({
 
     deleteBox: function(event) {
         event.preventDefault();
-        var tab = this.$el.find('ul.boxes li a.active');
+        var tab = $(event.currentTarget).siblings('a');
         var parsedID = this.parseID(tab.attr('id'));
         var box = this.findBox(parseInt(parsedID[1]));
         this.model.get('box_templates').remove(box);
@@ -110,7 +110,7 @@ Labrats.Views.TabGroupTemplate = Backbone.View.extend({
 
     switch: function(event) {
         event.preventDefault();
-        this.selectBox($(event.currentTarget));
+        this.selectBox($(event.currentTarget).children('a'));
     },
 
     parseID: function(s) {
