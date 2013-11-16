@@ -1,8 +1,7 @@
 Labrats.Views.FileUploadBoxTemplate = Labrats.Views.BoxTemplate.extend({
     events: {
         'input .file-upload-box-name': 'updateModel',
-        'click .save-box': 'save',
-        'click .delete-box': 'delete'
+        'click .save-box': 'save'
     },
 
     initialize: function() {

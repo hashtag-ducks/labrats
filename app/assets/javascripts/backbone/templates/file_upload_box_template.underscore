@@ -1,7 +1,6 @@
-<div class="draw file-upload-box" id="file-upload-box-<%= id %>">
-  <h5>File Upload Box <%= id %>: <%= name %></h5>
-  <input type="text" class="file-upload-box-name" value="<%= name %>"/>
+<div class="box file-upload-box" id="file-upload-box-<%= id %>">
   <input type="file" class="file-upload-box-input" />
-  <a href="#" class="save-box">Save Box</a>
-  <a href="#" class="delete-box">Delete Box</a>
+  <ul>
+    <li><a href="#" class="save-box">Save Box</a></li>
+  </ul>
 </div>

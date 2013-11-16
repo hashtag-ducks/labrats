@@ -3,14 +3,6 @@ Labrats.Views.BoxTemplate = Backbone.View.extend({
         this.render();
     },
 
-    delete: function(event) {
-        event.preventDefault();
-        this.model.destroy({
-            url: this.model.url() + '/' + this.model.get('id')
-        });
-        this.$el.remove();
-    },
-
     save: function(event) {
         event.preventDefault();
         this.model.save({}, {

@@ -1,5 +1,4 @@
 <div class="box text-box" id="text-box-<%= id %>">
-  <h5>Box <%= id %>: <%= name %></h5>
   <textarea class="text-box-content"><%= content %></textarea>
   <a href="#" class="save-box">Save Box</a>
 </div>
