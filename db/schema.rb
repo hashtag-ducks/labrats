@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131112010645) do
+ActiveRecord::Schema.define(:version => 20131116163147) do
 
   create_table "box_templates", :force => true do |t|
     t.string   "name"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(:version => 20131112010645) do
     t.string   "type"
     t.binary   "image"
     t.binary   "file"
+    t.integer  "ordering"
   end
 
   create_table "boxes", :force => true do |t|
@@ -34,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20131112010645) do
     t.datetime "updated_at",      :null => false
     t.binary   "image"
     t.binary   "file"
+    t.integer  "ordering"
   end
 
   create_table "notebooks", :force => true do |t|
@@ -65,6 +67,7 @@ ActiveRecord::Schema.define(:version => 20131112010645) do
     t.integer  "page_template_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.integer  "ordering"
   end
 
   create_table "tab_groups", :force => true do |t|
@@ -72,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20131112010645) do
     t.integer  "tab_group_template_id"
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
+    t.integer  "ordering"
   end
 
   create_table "users", :force => true do |t|

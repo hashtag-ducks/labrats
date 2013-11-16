@@ -2,7 +2,7 @@ class Box < ActiveRecord::Base
   belongs_to :box_template
   belongs_to :tab_group
 
-  attr_accessible :name, :type
+  attr_accessible :name, :type, :order
 
   delegate :notebook, :user, to: :tab_group
 

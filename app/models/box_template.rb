@@ -2,7 +2,7 @@ class BoxTemplate < ActiveRecord::Base
   belongs_to :tab_group_template
   has_many :boxes
 
-  attr_accessible :name, :tab_group_template_id, :type
+  attr_accessible :name, :tab_group_template_id, :type, :order
 
   delegate :notebook, to: :tab_group_template
   delegate :owner, :users, to: :notebook

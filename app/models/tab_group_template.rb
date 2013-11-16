@@ -6,7 +6,7 @@ class TabGroupTemplate < ActiveRecord::Base
   delegate :notebook, to: :page_template
   delegate :owner, :users, to: :notebook
 
-  attr_accessible :page_template_id
+  attr_accessible :page_template_id, :order
 
   validates :page_template_id, presence: true
 

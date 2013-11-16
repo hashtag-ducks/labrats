@@ -5,6 +5,8 @@ class TabGroup < ActiveRecord::Base
 
   delegate :notebook, :user, to: :page
 
+  attr_accessible :order
+
   validates :page_id, presence: true
 
   def as_json(options={})
