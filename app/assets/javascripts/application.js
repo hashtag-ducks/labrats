@@ -16,4 +16,5 @@
 //= require backbone
 //= require jquery.form.min
 //= require bootstrap
+//= require draggabilly.pkgd
 //= require_directory ./backbone

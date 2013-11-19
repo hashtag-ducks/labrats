@@ -18,6 +18,14 @@ Labrats.Views.TabGroupTemplate = Backbone.View.extend({
         this.$el.find("ul.boxes li a").each(function() {
             $(this).addClass('inactive').removeClass('active');
         });
+        var self = this;
+        this.$el.find('ul.boxes li').each(function() {
+            var draggie = new Draggabilly(this, {
+                // containment: 'ul.boxes',
+                // axis: 'x'
+            });
+            draggie.on('dragEnd', _.bind(self.dragEnd, self));
+        });
         if(this.model.get('box_templates').length > 0) {
             this.selectBox(this.$el.find("ul.boxes li a").first());
         }
@@ -150,5 +158,52 @@ Labrats.Views.TabGroupTemplate = Backbone.View.extend({
         return this.model.get('box_templates').find(function(box) {
             return box.get('id') === id;
         });
+    },
+
+    dragEnd: function(draggie, event, pointer) {
+        var ele = $(draggie.element);
+        var sibling = this.findIntersection(ele);
+        if(sibling) {
+            sibling.before(ele);
+            console.log('yeah');
+            // debugger;
+        }
+        else {
+            ele.parent().append(ele);
+        }
+        this.handleReorder(ele);
+        // Everything in its right place
+        ele.css({
+            top: 'auto',
+            left: 'auto'
+        });
+    },
+
+    /*
+     * On drag/drop, find the sibling <li> that `ele` should be
+     * dropped after. Returns the element, or null if it should be the
+     * last one in the list.
+     */
+    findIntersection: function($ele) {
+        var siblings = $('ul.boxes li'); // $ele.siblings();
+        for(var i = 0; i < siblings.length; i++) {
+            var rect = $ele[0].getBoundingClientRect(),
+                siblingRect = siblings[i].getBoundingClientRect();
+            if($ele[0] !== siblings[i] // &&
+               //siblingRect.right - rect.right <= siblingRect.width &&
+               //siblingRect.top - rect.top <= siblingRect.height) {
+               // TODO: #wtf, do this collision shit later.
+               {
+                return $(siblings[i]);
+            }
+        }
+        return null;
+    },
+
+    /*
+     * Correctly reorder this tab group's boxes.
+     */
+    handleReorder: function(ele) {
+        // TODO: do
     }
 });

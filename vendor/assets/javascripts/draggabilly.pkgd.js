@@ -1231,6 +1231,9 @@
          */
         Draggabilly.prototype.dragMove = function( event, pointer ) {
 
+            var originalX = this.dragPoint.x,
+                originalY = this.dragPoint.y;
+
             setPointerPoint( this.dragPoint, pointer );
             this.dragPoint.x -= this.startPoint.x;
             this.dragPoint.y -= this.startPoint.y;
@@ -1242,6 +1245,13 @@
                 this.dragPoint.y = Math.max( this.dragPoint.y, -relY );
                 this.dragPoint.x = Math.min( this.dragPoint.x, this.containerSize.width - relX - this.size.width );
                 this.dragPoint.y = Math.min( this.dragPoint.y, this.containerSize.height - relY - this.size.height );
+            }
+
+            if ( this.options.axis === 'x' ) {
+                this.dragPoint.y = originalY;
+            }
+            else if ( this.options.axis === 'y' ) {
+                this.dragPoint.x = originalX;
             }
 
             this.position.x = this.startPosition.x + this.dragPoint.x;
