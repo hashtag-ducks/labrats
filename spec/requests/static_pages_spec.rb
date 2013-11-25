@@ -8,8 +8,8 @@ describe 'Static pages' do
     before { visit '/' }
 
     it { should have_content('labrats') }
-    it { should have_selector('li a', text: "Sign In") }
-    it { should have_selector('li a', text: "Sign Up") }
+    it { should have_selector('li a', text: "Sign in") }
+    it { should have_selector('li a', text: "Sign up") }
   end
 
   describe 'Signin page' do
