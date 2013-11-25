@@ -1,7 +1,6 @@
 Labrats.Views.PageTemplate = Backbone.View.extend({
     events: {
-        'click .new-tab-group': 'newTabGroup',
-        'click .delete-page': 'delete'
+        'click .new-tab-group': 'newTabGroup'
     },
 
     initialize: function() {
@@ -47,13 +46,5 @@ Labrats.Views.PageTemplate = Backbone.View.extend({
                 console.log('error saving tab_group');
             }
         });
-    },
-
-    delete: function(event) {
-        event.preventDefault();
-        this.model.destroy({
-            url: this.model.url() + '/' + this.model.get('id')
-        });
-        this.$el.remove();
     }
 });

@@ -1,9 +1,13 @@
 <div class="notebook" id="<%= @notebook.id %>">
   <h1><%= @notebook.name %></h1>
-  <ul class="pages">
-    <!-- Pages will attach here for rendering. -->
+  <ul class="page-select">
+    
   </ul>
+  <div class="pages">
+    <!-- Pages will attach here for rendering. -->
+  </div>
   <a href="#" class="new-page">New Page</a>
+  <a href="#" class="delete-page">Delete this page</a>
   <%= link_to "Delete this notebook", @notebook, method: :delete %>
   <div class="access">
     <input type="text" class="user-email" />

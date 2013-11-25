@@ -69,11 +69,11 @@ Labrats.Views.TabGroupTemplate = Backbone.View.extend({
                 box_model = new Labrats.Models[type](
                     response.attributes
                 );
-                var tab = _.template(self.tabTemplate, {
+                var tab = $(_.template(self.tabTemplate, {
                     type: box_model.get('type'),
                     id: box_model.get('id'),
                     name: box_model.get('name')
-                });
+                }));
                 var boxEle = $('<div></div>');
                 self.$el.find('ul.boxes').append(tab);
                 self.$el.find('ul.boxes').after(boxEle);
@@ -93,6 +93,7 @@ Labrats.Views.TabGroupTemplate = Backbone.View.extend({
 
     deleteBox: function(event) {
         event.preventDefault();
+        event.stopPropagation();
         var tab = $(event.currentTarget).siblings('a');
         var parsedID = this.parseID(tab.attr('id'));
         var box = this.findBox(parseInt(parsedID[1]));
@@ -168,9 +169,6 @@ Labrats.Views.TabGroupTemplate = Backbone.View.extend({
             console.log('yeah');
             // debugger;
         }
-        else {
-            ele.parent().append(ele);
-        }
         this.handleReorder(ele);
         // Everything in its right place
         ele.css({
@@ -185,15 +183,13 @@ Labrats.Views.TabGroupTemplate = Backbone.View.extend({
      * last one in the list.
      */
     findIntersection: function($ele) {
-        var siblings = $('ul.boxes li'); // $ele.siblings();
+        var siblings = $ele.siblings();
         for(var i = 0; i < siblings.length; i++) {
             var rect = $ele[0].getBoundingClientRect(),
-                siblingRect = siblings[i].getBoundingClientRect();
-            if($ele[0] !== siblings[i] // &&
-               //siblingRect.right - rect.right <= siblingRect.width &&
-               //siblingRect.top - rect.top <= siblingRect.height) {
-               // TODO: #wtf, do this collision shit later.
-               {
+                siblingRect = siblings[i].getBoundingClientRect(),
+                midpoint = (rect.right + rect.left)/2;
+            if($ele[0] !== siblings[i] &&
+                midpoint <= siblingRect.right && midpoint >= siblingRect.left) {
                 return $(siblings[i]);
             }
         }
