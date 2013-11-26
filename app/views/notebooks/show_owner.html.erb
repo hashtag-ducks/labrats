@@ -1,18 +1,18 @@
 <div class="notebook" id="<%= @notebook.id %>">
   <h1><%= @notebook.name %></h1>
   <ul class="page-select">
-    
   </ul>
+  <h3 id="page-title"></h3>
   <div class="pages">
     <!-- Pages will attach here for rendering. -->
   </div>
-  <a href="#" class="new-page">New Page</a>
-  <a href="#" class="delete-page">Delete this page</a>
-  <%= link_to "Delete this notebook", @notebook, method: :delete %>
+  <button href="#" class="new-page btn btn-default">New Page</button>
+  <button href="#" class="delete-page btn btn-default">Delete this page</button>
+  <button href="/notebooks/<%= @notebook.id %>" data-method="delete" rel="nofollow" class="btn btn-default">Delete this notebook</button>
   <div class="access">
     <input type="text" class="user-email" />
-    <a href="#" class="grant-access">Grant notebook access to this user.</a>
-    <a href="#" class="revoke-access">Revoke notebook access from this user.</a>
+    <button href="#" class="grant-access btn btn-default">Grant notebook access to this user.</button>
+    <button href="#" class="revoke-access btn btn-default">Revoke notebook access from this user.</button>
   </div>
 </div>
 

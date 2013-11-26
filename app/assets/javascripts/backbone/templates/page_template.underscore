@@ -3,5 +3,5 @@
   <ul class="tab-groups">
     <!-- Tab groups attach here -->
   </ul>
-  <a href="#" class="new-tab-group">New Tab Group</a>
+  <button href="#" class="new-tab-group btn btn-default">New Tab Group</button>
 </div>

@@ -1,6 +1,4 @@
 <div class="box draw-box" id="draw-box-<%= id %>">
   <canvas class="draw-box-image"></canvas>
-  <ul>
-    <li><a href="#" class="save-box">Save Box</a></li>
-  </ul>
+  <button href="#" class="save-box btn btn-default">Save Box</button>
 </div>

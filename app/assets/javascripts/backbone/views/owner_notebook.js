@@ -3,7 +3,7 @@ Labrats.Views.OwnerNotebook = Backbone.View.extend({
         'click .new-page': 'newPage',
         'click .grant-access': 'grantAccess',
         'click .revoke-access': 'revokeAccess',
-        'click .page-select a': 'selectPage',
+        'click .page-select button': 'selectPage',
         'click .delete-page' : 'deletePage'
     },
 
@@ -21,7 +21,7 @@ Labrats.Views.OwnerNotebook = Backbone.View.extend({
                 el: ele
             });
             self.pages.push(view);
-            var li = '<li><a href="#" id="page-<%= index %>">Page <%= index + 1 %></a></li>'
+            var li = '<li><button href="#" id="page-<%= index %>" class="btn btn-default">Page <%= index + 1 %></button></li>'
             self.$el.find('ul.page-select').append(
                 $(_.template(li, {
                     index: index
@@ -34,7 +34,10 @@ Labrats.Views.OwnerNotebook = Backbone.View.extend({
     render: function() {
         this.resetPageNumbers();
         this.$el.find('.page').hide();
-        this.$el.find('#page-' + this.pages[this.selectedPage].model.get('id')).show();
+        if(this.pages.length > 0) {
+            this.$el.find('#page-' + this.pages[this.selectedPage].model.get('id')).show();
+            this.$el.find("#page-title").text('Page ' + (this.selectedPage + 1 ));
+        }
     },
 
     newPage: function(event) {
@@ -57,7 +60,7 @@ Labrats.Views.OwnerNotebook = Backbone.View.extend({
                 });
                 self.pages.push(pageView);
                 self.selectedPage = self.pages.length - 1;
-                var li = '<li><a href="#" id="page-<%= index %>">Page <%= index + 1 %></a></li>'
+                var li = '<li><button href="#" id="page-<%= index %>" class="btn">Page <%= index + 1 %></button></li>'
                 self.$el.find('ul.page-select').append(
                     $(_.template(li, {
                         index: self.selectedPage
@@ -109,14 +112,16 @@ Labrats.Views.OwnerNotebook = Backbone.View.extend({
         });
         page.$el.remove();
         this.pages.splice(this.selectedPage, 1);
-        this.$el.find('a#page-' + this.selectedPage).parent().remove();
+        this.$el.find('button#page-' + this.selectedPage).parent().remove();
         this.selectedPage = 0;
         this.render();
     },
 
     resetPageNumbers: function() {
-        this.$el.find('.page-select li a').each(function(index, ele) {
+        this.$el.find('.page-select li button').each(function(index, ele) {
             ele.innerHTML = "Page " + (index+1);
         });
-    }
+        $('.btn').addClass('btn-default');
+        this.$el.find('#page-' + this.selectedPage).removeClass('btn-default');
+   }
 });

@@ -3,6 +3,16 @@
 /* size variables */
 $boxHeight: 220px;
 
+textarea {
+    resize: none;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
 ul.boxes {
     margin:0px;
     padding:0px;
@@ -17,10 +27,6 @@ ul.boxes {
             font-family:Verdana, Arial, Helvetica, sans-serif;
             font-weight:bold;
             text-transform:uppercase;
-            &[contenteditable=true] {
-                background-color: #f00;
-                width: 100%;
-            }
         }
         padding:8px 14px 8px 14px;
         border:1px solid $medGrey;
@@ -74,4 +80,15 @@ div.page {
     padding: 10px;
     width: 100%;
     border: 1px solid;
+}
+
+div.tab-group {
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid;
+}
+
+.page-select li {
+    display: inline-block;
 }

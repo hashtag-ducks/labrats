@@ -1,6 +1,4 @@
 <div class="box text-box" id="text-box-<%= id %>">
   <textarea class="text-box-content"><%= content %></textarea>
-  <ul>
-    <li><a href="#" class="save-box">Save Box</a></li>
-  </ul>
+  <button href="#" class="save-box btn btn-default">Save Box</button>
 </div>

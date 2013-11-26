@@ -15,16 +15,16 @@ Labrats.Views.TabGroupTemplate = Backbone.View.extend({
 
     initialize: function() {
         this.render();
-        this.$el.find("ul.boxes li a").each(function() {
+        this.$el.find("ul.boxes li").each(function() {
             $(this).addClass('inactive').removeClass('active');
         });
         var self = this;
         this.$el.find('ul.boxes li').each(function() {
-            var draggie = new Draggabilly(this, {
-                // containment: 'ul.boxes',
-                // axis: 'x'
-            });
-            draggie.on('dragEnd', _.bind(self.dragEnd, self));
+            // var draggie = new Draggabilly(this, {
+            //     // containment: 'ul.boxes',
+            //     // axis: 'x'
+            // });
+            // draggie.on('dragEnd', _.bind(self.dragEnd, self));
         });
         if(this.model.get('box_templates').length > 0) {
             this.selectBox(this.$el.find("ul.boxes li a").first());
@@ -143,10 +143,10 @@ Labrats.Views.TabGroupTemplate = Backbone.View.extend({
     },
 
     selectBox: function(boxTab) {
-        this.$el.find("ul.boxes li a").each(function() {
+        this.$el.find("ul.boxes li").each(function() {
             $(this).addClass('inactive').removeClass('active');
         });
-        boxTab.addClass('active').removeClass('inactive');
+        boxTab.parent().addClass('active').removeClass('inactive');
         this.$el.find("div.box").addClass('hidden').removeClass('displayed');
         var parsedID = this.parseID(boxTab.attr('id'));
         var type = parsedID[0];
