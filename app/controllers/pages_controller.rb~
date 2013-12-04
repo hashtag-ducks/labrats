@@ -1,5 +1,4 @@
 class PagesController < ApplicationController
-  # fuck druids
   include NotebookAccessHelper
 
   before_filter :signed_in_user
