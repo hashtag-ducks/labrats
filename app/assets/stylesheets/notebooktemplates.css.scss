@@ -92,3 +92,15 @@ div.tab-group {
 .page-select li {
     display: inline-block;
 }
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid #eaeaea;
+  color: #999;
+  & small {
+      margin-left: 20px;
+      margin-bottom: 10px;
+      float: left;
+  }
+}
