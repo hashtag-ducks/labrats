@@ -9,7 +9,7 @@ Labrats.Models.Box = Backbone.Model.extend({
 
     toJSON: function() {
         return {
-          box: this.attributes  
+          box: this.attributes
         };
     },
 

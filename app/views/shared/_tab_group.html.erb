@@ -1,5 +1,6 @@
 <div class="tab-group">
-  <% group.each do |box| %>
-    <%= render partial: "text_box", locals: {box: box} %>
-  <% end %>
+    <% group.each do |box| %>
+        <%= render 'shared/error_messages', object: box.object%>
+        <%= render partial: "text_box", locals: {box: box} %>
+    <% end %>
 </div>

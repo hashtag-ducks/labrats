@@ -25,7 +25,11 @@ class NotebooksController < ApplicationController
 
   def show
     @notebook = Notebook.find(params[:id])
-    redirect_to root_url && return unless @notebook.users.include? current_user
+    if !@notebook.users.include? current_user
+        flash[:error] = "No street cred"
+        redirect_to root_url && return
+    end
+
     if current_user?(@notebook.owner)
       render 'show_owner'
     else

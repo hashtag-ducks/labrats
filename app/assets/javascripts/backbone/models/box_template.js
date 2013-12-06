@@ -18,5 +18,6 @@ Labrats.Models.BoxTemplate = Backbone.Model.extend({
         if(attrs.tab_group_template_id === 0) {
             return "Tab group template ID can't be 0";
         }
+
     }
 });

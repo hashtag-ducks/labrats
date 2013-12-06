@@ -1,29 +1,29 @@
 class TabGroupTemplatesController < ApplicationController
-  include NotebookAccessHelper
+    include NotebookAccessHelper
 
-  before_filter :signed_in_user
-  before_filter :notebook_owner, only: :destroy
+    before_filter :signed_in_user
+    before_filter :notebook_owner, only: :destroy
 
-  respond_to :json
+    respond_to :json
 
-  def create
-    @tab_group_template = TabGroupTemplate.create(params[:tab_group_template])
-    check_user(@tab_group_template) && return
-    if @tab_group_template.save
-      respond_with @tab_group_template
-    else
-      respond_with @tab_group_template, status: :unprocessable_entity
+    def create
+        @tab_group_template = TabGroupTemplate.create(params[:tab_group_template])
+        check_user(@tab_group_template) && return
+        if @tab_group_template.save
+            respond_with @tab_group_template
+        else
+            respond_with @tab_group_template, status: :unprocessable_entity
+        end
     end
-  end
 
-  def destroy
-    TabGroupTemplate.find(params[:id]).destroy
-    respond_to do |format|
-      format.json { head :ok }
+    def destroy
+        TabGroupTemplate.find(params[:id]).destroy
+        respond_to do |format|
+            format.json { head :ok }
+        end
     end
-  end
 
-  def model_class
-    TabGroupTemplate
-  end
+    def model_class
+        TabGroupTemplate
+    end
 end
