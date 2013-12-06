@@ -1,2 +1,9 @@
 <h1>Create Account</h1>
-<%= render "shared/user_form" %>
+<div class="row">
+    <div class="span6 offset3">
+        <%= form_for(@user) do |form| %>
+            <%= render 'fields', form: form %>
+            <%= form.submit "Create my account" %>
+        <% end %>
+    </div>
+</div>
