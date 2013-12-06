@@ -1,0 +1,3 @@
+<div class="notification <%= shown ? 'is-showing' : 'is-hiding' %>">
+  <p><%= message %></p>
+</div>

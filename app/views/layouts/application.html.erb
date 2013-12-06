@@ -1,39 +1,43 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Labrats</title>
-        <%= stylesheet_link_tag    "application", :media => "all" %>
-        <%= javascript_include_tag "application" %>
-        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-        <%= csrf_meta_tags %>
-        <% ["page_template",
-            "tab_group_template",
-            "text_box_template",
-            "draw_box_template",
-            "file_upload_box_template",
-            "page",
-            "tab_group",
-            "text_box",
-            "draw_box",
-            "file_upload_box"].each do |template_name| %>
-                <script type="text/template" id="<%= template_name %>-tpl">
-                    <%= File.read("app/assets/javascripts/backbone/templates/#{template_name}.underscore").html_safe %>
-                </script>
-            <% end %>
-        </head>
-        <body>
-            <%= render('layouts/header') %>
-            <div class="container">
-                <% flash.each do |key, value| %>
-                    <%= content_tag(:div, value, class: "alert alert-#{key}") %>
-                <% end %>
-                <%= yield %>
-            </div>
+  <head>
+    <title>Labrats</title>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <%= csrf_meta_tags %>
+    <% ["page_template",
+       "tab_group_template",
+       "text_box_template",
+       "draw_box_template",
+       "file_upload_box_template",
+       "page",
+       "tab_group",
+       "text_box",
+       "draw_box",
+       "file_upload_box",
+       "notification"].each do |template_name| %>
+    <script type="text/template" id="<%= template_name %>-tpl">
+      <%= File.read("app/assets/javascripts/backbone/templates/#{template_name}.underscore").html_safe %>
+    </script>
+    <% end %>
+  </head>
+  <body>
+    <%= render('layouts/header') %>
 
-            <footer class="footer">
-            <small><a href="https://github.com/hashtag-ducks" target="_blank">#ducks 2013</a></small>
-            <!--  <%= debug(params) if Rails.env.development? %>   -->
-            </footer>
+    <div class="container">
+      <% flash.each do |key, value| %>
+      <%= content_tag(:div, value, class: "alert alert-#{key}") %>
+      <% end %>
+      <%= yield %>
+    </div>
 
-        </body>
-    </html>
+    <footer class="footer">
+      <small><a href="https://github.com/hashtag-ducks" target="_blank">#ducks 2013</a></small>
+      <!--  <%= debug(params) if Rails.env.development? %>   -->
+    </footer>
+
+    <div class="wrapper-notification"></div>
+
+  </body>
+</html>

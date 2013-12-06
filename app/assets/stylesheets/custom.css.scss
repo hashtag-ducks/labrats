@@ -8,6 +8,49 @@
     box-sizing: border-box;
 }
 
+@keyframes slidein {
+    from {
+        bottom: -44px;
+    }
+    to {
+        bottom: 0px;
+    }
+}
+
+@-webkit-keyframes slidein {
+    from {
+        bottom: -44px;
+    }
+    to {
+        bottom: 0px;
+    }
+}
+
+@keyframes slideout {
+    to {
+        bottom: -50px;
+    }
+    from {
+        bottom: 0px;
+    }
+}
+
+@-webkit-keyframes slideout {
+    to {
+        bottom: -50px;
+    }
+    from {
+        bottom: 0px;
+    }
+}
+
+@mixin slide($direction) {
+    animation-duration: 1s;
+    -webkit-animation-duration: 1s;
+    animation-name: slide#{$direction};
+    -webkit-animation-name: slide#{$direction};
+}
+
 /* universal */
 html {
     overflow-y: scroll;
@@ -15,7 +58,6 @@ html {
 
 body {
     background-color: $background;
-    padding-top: 60px;
 }
 
 section {
@@ -42,7 +84,6 @@ canvas {
     border-style: solid;
     border-width: 1px;
 }
-
 
 /* typography */
 
@@ -118,3 +159,20 @@ input {
     @extend .error;
 }
 
+.notification {
+    box-shadow: 0 -1px 3px rgba(rgb(0, 0, 0), 0.2), inset 0 3px 1px rgb(0, 159, 230);
+    position: fixed;
+    height: 44px;
+    width: 100px;
+    right: 20px;
+
+    &.is-showing {
+        @include slide(in);
+        bottom: 0;
+    }
+
+    &.is-hiding {
+        @include slide(out);
+        bottom: -44px;
+    }
+}
