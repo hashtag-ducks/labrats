@@ -8,7 +8,7 @@
   </div>
   <button href="#" class="new-page btn btn-default">New Page</button>
   <button href="#" class="delete-page btn btn-default">Delete this page</button>
-  <button href="/notebooks/<%= @notebook.id %>" data-method="delete" rel="nofollow" class="btn btn-default">Delete this notebook</button>
+  <a href="/notebooks/<%= @notebook.id %>" data-method="delete" rel="nofollow" class="btn btn-default">Delete this notebook</a>
   <div class="access">
     <input type="text" class="user-email" />
     <button href="#" class="grant-access btn btn-default">Grant notebook access to this user.</button>
