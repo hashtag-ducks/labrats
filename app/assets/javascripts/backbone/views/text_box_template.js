@@ -1,8 +1,7 @@
 Labrats.Views.TextBoxTemplate = Labrats.Views.BoxTemplate.extend({
     events: {
         'input .text-box-content': 'updateModel',
-        'input .text-box-name': 'updateModel',
-        'click .save-box': 'save'
+        'input .text-box-name': 'updateModel'
     },
 
     initialize: function() {
@@ -21,5 +20,7 @@ Labrats.Views.TextBoxTemplate = Labrats.Views.BoxTemplate.extend({
     updateModel: function(event) {
         event.preventDefault();
         this.model.set('content', this.$el.find('.text-box-content').val());
+        clearTimeout(this.saveTimer);
+        this.saveTimer = setTimeout(_.bind(this.save, this, event), 1000);
     }
 });

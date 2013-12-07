@@ -64,6 +64,10 @@ Labrats.Views.TabGroupTemplate = Backbone.View.extend({
             type: type
         });
         var self = this;
+        var notification = new Labrats.Views.Notification({
+            message: "Saving..."
+        });
+        notification.show();
         box_model.save({}, {
             success: function(response) {
                 box_model = new Labrats.Models[type](
@@ -98,6 +102,10 @@ Labrats.Views.TabGroupTemplate = Backbone.View.extend({
         var parsedID = this.parseID(tab.attr('id'));
         var box = this.findBox(parseInt(parsedID[1]));
         this.model.get('box_templates').remove(box);
+        var notification = new Labrats.Views.Notification({
+            message: "Deleting..."
+        });
+        notification.show();
         box.destroy({
             url: box.url() + '/' + box.get('id')
         });
@@ -111,6 +119,10 @@ Labrats.Views.TabGroupTemplate = Backbone.View.extend({
 
     delete: function(event) {
         event.preventDefault();
+        var notification = new Labrats.Views.Notification({
+            message: "Deleting..."
+        });
+        notification.show();
         this.model.destroy({
             url: this.model.url() + '/' + this.model.get('id')
         });
@@ -140,6 +152,17 @@ Labrats.Views.TabGroupTemplate = Backbone.View.extend({
         var id = parseInt(this.parseID(ele.attr('id'))[1]);
         var box = this.findBox(id);
         box.set('name', text);
+        this.saveBox(box);
+    },
+
+    saveBox: function(box) {
+        var notification = new Labrats.Views.Notification({
+            message: "Saving..."
+        });
+        notification.show();
+        box.save({}, {
+            url: "/box_templates/" + this.model.get('id')
+        });
     },
 
     selectBox: function(boxTab) {

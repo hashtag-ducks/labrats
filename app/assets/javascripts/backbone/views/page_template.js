@@ -28,6 +28,10 @@ Labrats.Views.PageTemplate = Backbone.View.extend({
         var tab_group_model = new Labrats.Models.TabGroupTemplate({
             page_template_id: this.model.get('id')
         });
+        var notification = new Labrats.Views.Notification({
+            message: "Saving..."
+        });
+        notification.show();
         var self = this;
         tab_group_model.save({}, {
             success: function(response) {

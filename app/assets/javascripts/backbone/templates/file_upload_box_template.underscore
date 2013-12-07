@@ -1,4 +1,4 @@
 <div class="box file-upload-box" id="file-upload-box-<%= id %>">
   <input type="file" class="file-upload-box-input" />
-  <button href="#" class="save-box btn btn-default">Save Box</button>
+  <button href="#" class="save-box btn btn-default">Upload File</button>
 </div>

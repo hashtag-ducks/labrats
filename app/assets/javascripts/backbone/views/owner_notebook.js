@@ -44,7 +44,11 @@ Labrats.Views.OwnerNotebook = Backbone.View.extend({
         event.preventDefault();
         var page_model = new Labrats.Models.PageTemplate({
             notebook_id: this.$el.attr('id')
+        })
+        var notification = new Labrats.Views.Notification({
+            message: "Saving..."
         });
+        notification.show();
         var self = this;
         page_model.save({}, {
             success: function(response) {
@@ -77,6 +81,10 @@ Labrats.Views.OwnerNotebook = Backbone.View.extend({
 
     grantAccess: function(event) {
         event.preventDefault();
+        var notification = new Labrats.Views.Notification({
+            message: "Saving..."
+        });
+        notification.show();
         var email = this.$el.find('.user-email').val();
         $.ajax('/notebook_access', {
             type: 'POST',
@@ -89,6 +97,10 @@ Labrats.Views.OwnerNotebook = Backbone.View.extend({
 
     revokeAccess: function(event) {
         event.preventDefault();
+        var notification = new Labrats.Views.Notification({
+            message: "Saving..."
+        });
+        notification.show();
         var email = this.$el.find('.user-email').val();
         $.ajax('/notebook_access/' + this.model.get('id'), {
             type: 'DELETE',
@@ -106,6 +118,10 @@ Labrats.Views.OwnerNotebook = Backbone.View.extend({
 
     deletePage: function(event) {
         event.preventDefault();
+        var notification = new Labrats.Views.Notification({
+            message: "Deleting..."
+        });
+        notification.show();
         var page = this.pages[this.selectedPage];
         page.model.destroy({
             url: page.model.url() + '/' + page.model.get('id')
