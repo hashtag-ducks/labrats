@@ -4,7 +4,7 @@ Labrats.Views.SharedNotebook = Backbone.View.extend({
         this.model.get('pages').forEach(function(page) {
             var ele = $('<li></li>');
             self.$el.children('ul.pages').append(ele);
-            var view = new Labrats.Views.Page({
+            var view = new Labrats.Views.FilledPage({
                 model: page,
                 el: ele
             });
