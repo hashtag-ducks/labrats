@@ -1,5 +1,9 @@
+<div class="row" id="new-notebook-form">
 <%= form_for(@notebook, url: user_notebooks_path) do |form| %>
-  <%= form.label :name %>
-  <%= form.text_field :name %>
-  <%= form.submit "New notebook" %>
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, :class => 'form-control' %>
+  </div>
+    <%= form.submit "New notebook", :class => 'btn btn-primary btn-block' %>
 <% end %>
+</div>
