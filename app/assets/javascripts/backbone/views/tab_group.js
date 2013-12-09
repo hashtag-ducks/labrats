@@ -3,11 +3,6 @@ Labrats.Views.TabGroup = Backbone.View.extend({
         'click ul.boxes li': 'switch'
     },
 
-    tabTemplate: '<li>' +
-        '<a href="#" id=<%= type %><%= id %>><%= name %></a>' +
-        '<span class="glyphicon glyphicon-remove delete-box"></span>' +
-        '</li>',
-
     initialize: function() {
         this.render();
         var self = this;

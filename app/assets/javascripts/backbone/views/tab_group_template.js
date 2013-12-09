@@ -8,6 +8,11 @@ Labrats.Views.TabGroupTemplate = Labrats.Views.TabGroup.extend({
         'blur a[contenteditable=true]': 'setName'
     },
 
+    tabTemplate: '<li>' +
+        '<a href="#" id=<%= type %><%= id %>><%= name %></a>' +
+        '<span class="glyphicon glyphicon-remove delete-box"></span>' +
+        '</li>',
+
     templateName: '#tab_group_template-tpl',
 
     childSelector: 'box_templates',
