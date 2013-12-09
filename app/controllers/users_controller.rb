@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
     def create
         @user = User.new(params[:user])
+        @user.organization = params[:user][:organization].capitalize!
         if @user.save
             sign_in @user
             redirect_to @user

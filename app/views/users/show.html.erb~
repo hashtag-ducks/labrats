@@ -1,0 +1,4 @@
+<%= @user.name %>, <%= @user.email %>
+<% if current_user? @user %>
+  <%= link_to "Your notebooks", user_notebooks_url(@user) %>
+<% end %>

@@ -78,6 +78,8 @@ textarea {
 
 .navbar-brand {
     color: $primary !important;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
 canvas {
@@ -95,7 +97,6 @@ h1 {
     font-size: 3em;
     letter-spacing: -2x;
     margin-bottom: 30px;
-    text-align: center;
 }
 
 h2 {
@@ -182,4 +183,15 @@ input {
         text-align: center;
         margin-top: 10px;
     }
+}
+
+/* user pages */
+.user-page {
+  .gravatar {
+    float: left;
+    margin-right: 20px;
+  }
+  h1 {
+    margin-bottom: 20px;
+  }
 }
