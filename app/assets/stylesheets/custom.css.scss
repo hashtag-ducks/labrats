@@ -221,7 +221,11 @@ input {
 
 /* notebook forms */
 
-#new-notebook-form {
+.new-notebook-form {
   width: 50%;
   margin: 0 auto;
+  padding: 5px;
+
+  border: solid;
+  border-color: $lightGrey;
 }
