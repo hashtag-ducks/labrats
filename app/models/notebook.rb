@@ -49,7 +49,7 @@ class Notebook < ActiveRecord::Base
   # destroy their copy.
   def remove_user(user)
     users.delete user
-    pages = page_templates.flat_map(&:pages).select { |p| p.user_id == user }
+    pages = page_templates.flat_map(&:pages).select { |p| p.user_id == user.id }
     pages.each(&:destroy)
     save
   end
