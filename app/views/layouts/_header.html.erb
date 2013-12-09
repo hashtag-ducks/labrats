@@ -8,11 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <% if signed_in? %>
-        <%= link_to "Labrats", current_user, :class => 'navbar-brand' %>
-      <% else %>
-        <%= link_to "Labrats", root_path, :class => 'navbar-brand' %>
-      <% end %>
+      <%= link_to "Labrats", root_path, :class => 'navbar-brand' %>
     </div>
 
     <!-- Links, forms, and other content t.b. toggled -->
