@@ -178,13 +178,14 @@ input {
 }
 
 .notification {
-    box-shadow: 0 -1px 3px rgba($black, 0.2), inset 0 3px 1px $yelOne;
+    box-shadow: 0 -1px 3px rgba($black, 0.2), inset 0 5px 1px $yelOne;
     position: fixed;
     height: 44px;
     width: 100px;
     right: 20px;
 
-    background-color: $lightGrey;
+    color: $medGrey;
+    background-color: #020202;
 
     &.is-showing {
         @include slide(in);
