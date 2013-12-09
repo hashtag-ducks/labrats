@@ -1,7 +1,6 @@
-<div class="draw file-upload-box" id="file-upload-box-<%= id %>">
+<div class="box file-upload-box" id="file-upload-box-<%= id %>">
   <form method="POST" name="box" action="/boxes/<%= id %>/files" enctype="multipart/form-data">
     <input type="file" name="file" class="file-upload-box-file" />
   </form>
-  <a href="#" class="save-box">Save Box</a>
-  <a href="#" class="delete-box">Delete Box</a>
+  <button href="#" class="save-box btn btn-default">Upload File</button>
 </div>

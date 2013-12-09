@@ -1,11 +1,10 @@
-Labrats.Views.TextBox = Labrats.Views.Box.extend({
+Labrats.Views.AbstractTextBox = Labrats.Views.AbstractBox.extend({
     events: {
-        'input .text-box-content': 'updateModel',
-        'click .save-box': 'save'
+        'input .text-box-content': 'updateModel'
     },
 
     initialize: function() {
-        var tpl = $('#text_box-tpl').text();
+        var tpl = $(this.templateName).text();
         this.$el.html(_.template(tpl, {
             id: this.model.get('id'),
             name: this.model.get('name'),
@@ -16,10 +15,11 @@ Labrats.Views.TextBox = Labrats.Views.Box.extend({
     updateModel: function(event) {
         event.preventDefault();
         this.model.set('content', this.$el.find('.text-box-content').val());
+        clearTimeout(this.saveTimer);
+        this.saveTimer = setTimeout(_.bind(this.save, this, event), 1000);
     },
 
-    save: function(event) {
-        event.preventDefault();
-        this.model.save();
+    render: function() {
+        this.$el.find('.text-box-content').val(this.model.get('content'));
     }
 });
