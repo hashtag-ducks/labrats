@@ -9,7 +9,7 @@ Labrats::Application.routes.draw do
   match 'boxes/:id/files', to: 'boxes#upload_file', via: :post
 
   resources :users do
-    resources :notebooks, shallow: true do
+    resources :notebooks, except: :new, shallow: true do
       resources :page_templates, shallow: true do
         resources :tab_group_templates, shallow: true do
           resources :box_templates, shallow: true

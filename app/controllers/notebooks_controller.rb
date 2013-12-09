@@ -4,10 +4,6 @@ class NotebooksController < ApplicationController
   before_filter :notebook_owner, only: :destroy
   before_filter :signed_in_user
 
-  def new
-    @notebook = Notebook.new
-  end
-
   def create
     @notebook = Notebook.new(params[:notebook])
     @notebook.owner = current_user
@@ -15,12 +11,13 @@ class NotebooksController < ApplicationController
     if @notebook.save
       redirect_to @notebook
     else
-      render 'new'
+      render 'index'
     end
   end
 
   def index
     @notebooks = current_user.notebooks.all
+    @notebook = Notebook.new
   end
 
   def show
