@@ -1,4 +1,4 @@
-Labrats.Views.TabGroupTemplate = Backbone.View.extend({
+Labrats.Views.TabGroupTemplate = Labrats.Views.TabGroup.extend({
     events: {
         'click .new-box': 'newBox',
         'click .delete-box': 'deleteBox',
@@ -8,13 +8,13 @@ Labrats.Views.TabGroupTemplate = Backbone.View.extend({
         'blur a[contenteditable=true]': 'setName'
     },
 
-    tabTemplate: '<li>' +
-        '<a href="#" id=<%= type %><%= id %>><%= name %></a>' +
-        '<span class="glyphicon glyphicon-remove delete-box"></span>' +
-        '</li>',
+    templateName: '#tab_group_template-tpl',
+
+    childSelector: 'box_templates',
 
     initialize: function() {
         this.render();
+        Labrats.Views.TabGroup.prototype.initialize.apply(this);
         this.$el.find("ul.boxes li").each(function() {
             $(this).addClass('inactive').removeClass('active');
         });
@@ -26,34 +26,9 @@ Labrats.Views.TabGroupTemplate = Backbone.View.extend({
             // });
             // draggie.on('dragEnd', _.bind(self.dragEnd, self));
         });
-        if(this.model.get('box_templates').length > 0) {
+        if(this.model.get(this.childSelector).length > 0) {
             this.selectBox(this.$el.find("ul.boxes li a").first());
         }
-    },
-
-    render: function() {
-        var tpl = $('#tab_group_template-tpl').text();
-        this.$el.html(_.template(tpl, {
-            id: this.model.get('id')
-        }));
-        var self = this;
-        this.model.get('box_templates').forEach(function(box) {
-            var id = box.get('id');
-            var tab = $(_.template(self.tabTemplate, {
-                type: box.get('type'),
-                id: box.get('id'),
-                name: box.get('name')
-            }));
-            var ele = $('<div></div>');
-            self.$el.find('ul.boxes').append(tab);
-            self.$el.find('ul.boxes').after(ele);
-            var boxView = new Labrats.Views[box.get('type')]({
-                model: box,
-                el: ele
-            });
-            self.$el.find('#' + box.get('type') + box.get('id')).text(box.get('name'));
-        });
-
     },
 
     newBox: function(event) {
@@ -86,7 +61,7 @@ Labrats.Views.TabGroupTemplate = Backbone.View.extend({
                     el: boxEle
                 });
                 boxEle.find('.box').addClass('hidden');
-                self.model.get('box_templates').add(box_model);
+                self.model.get(this.childSelector).add(box_model);
                 self.selectBox(tab.children('a'));
             },
             error: function() {
@@ -101,7 +76,7 @@ Labrats.Views.TabGroupTemplate = Backbone.View.extend({
         var tab = $(event.currentTarget).siblings('a');
         var parsedID = this.parseID(tab.attr('id'));
         var box = this.findBox(parseInt(parsedID[1]));
-        this.model.get('box_templates').remove(box);
+        this.model.get(this.childSelector).remove(box);
         var notification = new Labrats.Views.Notification({
             message: "Deleting..."
         });
@@ -112,7 +87,7 @@ Labrats.Views.TabGroupTemplate = Backbone.View.extend({
         tab.parent().remove();
         var type = parsedID[0].match(/[A-Z][a-z]*/g).map(function(s) { return s.toLowerCase(); }).join("-").replace(/-template/, '');
         this.$el.find('#' + type + '-' + parsedID[1]).remove();
-        if(this.model.get('box_templates').length > 0) {
+        if(this.model.get(this.childSelector).length > 0) {
             this.selectBox(this.$el.find("ul.boxes li a").first());
         }
     },
@@ -127,15 +102,6 @@ Labrats.Views.TabGroupTemplate = Backbone.View.extend({
             url: this.model.url() + '/' + this.model.get('id')
         });
         this.$el.remove();
-    },
-
-    switch: function(event) {
-        event.preventDefault();
-        this.selectBox($(event.currentTarget).children('a'));
-    },
-
-    parseID: function(s) {
-        return [s.match(/[^\d]+/)[0], s.match(/\d+/)[0]];
     },
 
     editName: function(event) {
@@ -165,21 +131,8 @@ Labrats.Views.TabGroupTemplate = Backbone.View.extend({
         });
     },
 
-    selectBox: function(boxTab) {
-        this.$el.find("ul.boxes li").each(function() {
-            $(this).addClass('inactive').removeClass('active');
-        });
-        boxTab.parent().addClass('active').removeClass('inactive');
-        this.$el.find("div.box").addClass('hidden').removeClass('displayed');
-        var parsedID = this.parseID(boxTab.attr('id'));
-        var type = parsedID[0];
-        var id = parsedID[1];
-        type = type.match(/[A-Z][a-z]*/g).map(function(s) { return s.toLowerCase(); }).join("-").replace(/-template/, '');
-        $("#"+type+"-"+id).addClass('displayed').removeClass('hidden');
-    },
-
     findBox: function(id) {
-        return this.model.get('box_templates').find(function(box) {
+        return this.model.get(this.childSelector).find(function(box) {
             return box.get('id') === id;
         });
     },
@@ -189,8 +142,6 @@ Labrats.Views.TabGroupTemplate = Backbone.View.extend({
         var sibling = this.findIntersection(ele);
         if(sibling) {
             sibling.before(ele);
-            console.log('yeah');
-            // debugger;
         }
         this.handleReorder(ele);
         // Everything in its right place

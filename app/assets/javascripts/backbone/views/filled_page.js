@@ -3,6 +3,6 @@
 Labrats.Views.FilledPage = Labrats.Views.Page.extend({
     templateName: "#page-tpl",
 
-    childType: 'TabGroup',
+    childType: 'FilledTabGroup',
     childSelector: 'tab_groups'
 });
