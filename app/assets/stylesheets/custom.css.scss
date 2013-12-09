@@ -108,10 +108,6 @@ h2 {
     color: #d3d3d3;
 }
 
-p {
-    font-size: 1.1em;
-    line-height: 1.7em;
-}
 
 
 /* header */
@@ -138,9 +134,21 @@ p {
   margin: 0 auto;
   text-align: center;
   margin-bottom: 100px;
+  p {
+    font-size: 10pt;
+  }
   h1 {
     text-align: center;
     margin-top: -50px;
+  }
+  .notebook-picture {
+    @media(max-width: 600px) {
+      width: 85%;
+      height: 85%;
+    }
+  }
+  .btn {
+     margin: 20px;
   }
 }
 

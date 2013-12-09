@@ -4,11 +4,7 @@
     <list default="true" id="4ff2ce96-07fc-443b-8036-f2e6d939e177" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/custom.css.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/custom.css.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/notebooktemplates.css.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/notebooktemplates.css.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/helpers/users_helper.rb" afterPath="$PROJECT_DIR$/app/helpers/users_helper.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/notebooks/new.html.erb" afterPath="$PROJECT_DIR$/app/views/notebooks/new.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/static_pages/home.html.erb" afterPath="$PROJECT_DIR$/app/views/static_pages/home.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/show.html.erb" afterPath="$PROJECT_DIR$/app/views/users/show.html.erb" />
     </list>
     <ignored path="labrats.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,7 +26,7 @@
       <file leaf-file-name="custom.css.scss" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/custom.css.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="139" column="23" selection-start="1928" selection-end="1928" vertical-scroll-proportion="0.60833335">
+            <state line="150" column="14" selection-start="2089" selection-end="2089" vertical-scroll-proportion="0.8">
               <folding />
             </state>
           </provider>
@@ -39,16 +35,7 @@
       <file leaf-file-name="home.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/static_pages/home.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="32" selection-start="87" selection-end="87" vertical-scroll-proportion="-1.25">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="application.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="34" selection-start="521" selection-end="521" vertical-scroll-proportion="-4.4583335">
+            <state line="6" column="63" selection-start="264" selection-end="264" vertical-scroll-proportion="-3.75">
               <folding />
             </state>
           </provider>
@@ -711,13 +698,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/static_pages/home.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="32" selection-start="87" selection-end="87" vertical-scroll-proportion="-1.25">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="34" selection-start="521" selection-end="521" vertical-scroll-proportion="-4.4583335">
@@ -725,9 +705,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/static_pages/home.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="63" selection-start="264" selection-end="264" vertical-scroll-proportion="-3.75">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/custom.css.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="139" column="23" selection-start="1928" selection-end="1928" vertical-scroll-proportion="0.60833335">
+        <state line="150" column="14" selection-start="2089" selection-end="2089" vertical-scroll-proportion="0.8">
           <folding />
         </state>
       </provider>
