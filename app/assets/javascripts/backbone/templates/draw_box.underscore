@@ -1,5 +1,4 @@
 <div class="box draw-box" id="draw-box-<%= id %>">
   <canvas class="draw-box-image"></canvas>
-  <a href="#" class="save-box">Save Box</a>
-  <a href="#" class="clear-image">Clear Image</a>
+  <button href="#" class="clear-image btn btn-default">Clear Image</button>
 </div>

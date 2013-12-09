@@ -1,26 +1,11 @@
-Labrats.Views.PageTemplate = Backbone.View.extend({
+Labrats.Views.PageTemplate = Labrats.Views.Page.extend({
+    templateName: '#page_template-tpl',
+
+    childType: 'TabGroupTemplate',
+    childSelector: 'tab_group_templates',
+
     events: {
         'click .new-tab-group': 'newTabGroup'
-    },
-
-    initialize: function() {
-        this.render();
-    },
-
-    render: function() {
-        var tpl = $('#page_template-tpl').text();
-        this.$el.html(_.template(tpl, {
-            id: this.model.get('id')
-        }));
-        var self = this;
-        this.model.get('tab_group_templates').forEach(function(tabGroup) {
-            var ele = $('<li></li>');
-            self.$el.find('ul.tab-groups').append(ele);
-            var view = new Labrats.Views.TabGroupTemplate({
-                model: tabGroup,
-                el: ele
-            });
-        });
     },
 
     newTabGroup: function(event) {

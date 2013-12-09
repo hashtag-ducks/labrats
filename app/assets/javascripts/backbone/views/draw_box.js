@@ -1,7 +1,6 @@
-Labrats.Views.DrawBox = Labrats.Views.Box.extend({
+Labrats.Views.AbstractDrawBox = Labrats.Views.AbstractBox.extend({
     events: {
         'click .clear-image': 'clearImage',
-        'click .save-box': 'save',
         'mousedown .draw-box-image': 'startDragging',
         'mouseup .draw-box-image': 'stopDragging',
         'mousemove .draw-box-image': 'canvasClick',
@@ -9,10 +8,6 @@ Labrats.Views.DrawBox = Labrats.Views.Box.extend({
     },
 
     initialize: function() {
-        this.render();
-    },
-
-    render: function() {
         var tpl = $('#draw_box-tpl').text();
         this.$el.html(_.template(tpl, {
             id: this.model.get('id'),
@@ -22,6 +17,7 @@ Labrats.Views.DrawBox = Labrats.Views.Box.extend({
         image.src = this.model.get('image');
         var canvas = this.$el.find('canvas')[0];
         canvas.getContext('2d').drawImage(image, 0, 0);
+        this.render();
     },
 
     canvasClick: function(event) {
@@ -58,18 +54,27 @@ Labrats.Views.DrawBox = Labrats.Views.Box.extend({
 
     stopDragging: function(event) {
         this.isDragging = false;
+        clearTimeout(this.saveTimer);
+        this.saveTimer = setTimeout(_.bind(this.save, this, event), 1000);
     },
 
     clearImage: function(event) {
         event.preventDefault();
         var canvas = this.$el.find('canvas')[0];
         canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+        this.save(event);
     },
 
     save: function(event) {
         event.preventDefault();
+        var notification = new Labrats.Views.Notification({
+            message: 'Saving...'
+        });
+        notification.show();
         var canvas = this.$el.find('canvas')[0];
         this.model.set('image', canvas.toDataURL('image/png'));
-        this.model.save();
+        this.model.save({}, {
+            url: this.url()
+        });
     }
 });
