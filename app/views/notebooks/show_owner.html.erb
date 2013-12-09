@@ -7,12 +7,14 @@
     <!-- Pages will attach here for rendering. -->
   </div>
   <button href="#" class="new-page btn btn-default">New Page</button>
-  <button href="#" class="delete-page btn btn-default">Delete this page</button>
-  <a href="/notebooks/<%= @notebook.id %>" data-method="delete" rel="nofollow" class="btn btn-default">Delete this notebook</a>
+  <button href="#" class="delete-page btn btn-danger">Delete this page</button>
+  <a href="/notebooks/<%= @notebook.id %>" data-method="delete" rel="nofollow" class="btn btn-danger">Delete this notebook</a>
+  <!-- Access permissions -->
   <div class="access">
-    <input type="text" class="user-email" />
-    <button href="#" class="grant-access btn btn-default">Grant notebook access to this user.</button>
-    <button href="#" class="revoke-access btn btn-default">Revoke notebook access from this user.</button>
+    <h3>Notebook Permissions</h3>
+    <input type="text" class="user-email form-control" placeholder="Enter an email address." />
+    <button href="#" class="grant-access btn btn-success">Grant access. </button>
+    <button href="#" class="revoke-access btn btn-danger">Revoke access. </button>
   </div>
 </div>
 
