@@ -62,6 +62,7 @@ Labrats.Views.AbstractDrawBox = Labrats.Views.AbstractBox.extend({
         event.preventDefault();
         var canvas = this.$el.find('canvas')[0];
         canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+        this.save(event);
     },
 
     save: function(event) {
@@ -72,6 +73,8 @@ Labrats.Views.AbstractDrawBox = Labrats.Views.AbstractBox.extend({
         notification.show();
         var canvas = this.$el.find('canvas')[0];
         this.model.set('image', canvas.toDataURL('image/png'));
-        this.model.save();
+        this.model.save({}, {
+            url: this.url()
+        });
     }
 });
