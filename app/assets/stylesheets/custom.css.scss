@@ -206,6 +206,14 @@ input {
 #signup-form, #signin-form {
   width: 50%;
   margin: 0 auto;
+
+  .error {
+      color: $red;
+  }
+
+  span.glyphicon {
+      display: inline;
+  }
 }
 
 /* user pages */
