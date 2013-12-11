@@ -9,7 +9,7 @@ Labrats.Views.Signup = Backbone.View.extend({
     },
 
     EMAIL_REGEX: /[\w+\-.]+@[a-z\d\-.]+\.[a-z]+/,
-    PASSWORD_LENGTH: 8,
+    PASSWORD_LENGTH: 10,
 
     clearErrors: function($el) {
         $el.siblings('span.error').remove();
@@ -24,14 +24,14 @@ Labrats.Views.Signup = Backbone.View.extend({
     },
 
     checkSubmit: function(event) {
-        event.preventDefault();
         this.clearErrors($('.form-control'));
         var org = this.checkBlank($('#user_organization'));
         var email = this.checkEmail();
         var name = this.checkBlank($('#user_name'));
         var password = this.checkPasswords();
-        if(org && email && name && password) {
-            this.$el.find('input[type=submit]').submit();
+        if(!org || !email || !name || !password) {
+            event.preventDefault();
+            // this.$el.find('input[type=submit]').submit();
         }
     },
 
