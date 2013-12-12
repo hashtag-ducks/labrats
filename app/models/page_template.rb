@@ -5,7 +5,7 @@ class PageTemplate < ActiveRecord::Base
 
   delegate :owner, :users, to: :notebook
 
-  attr_accessible :notebook_id, :name
+  attr_accessible :notebook_id, :name, :ordering
 
   validates :notebook_id, presence: true
 
