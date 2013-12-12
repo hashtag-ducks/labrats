@@ -21,6 +21,11 @@ Labrats.Models.PageTemplate = Backbone.Model.extend({
 
     // See Labrats.Models.Notebook
     parse: function(response) {
+        // On update Rails doesn't send anything, so let's make sure
+        // this is defined
+        if(!response) {
+            return;
+        }
         response.tab_group_templates = new Labrats.Collections.TabGroupTemplates(
             _.map(response.tab_group_templates, function(tab_group_JSON) {
                 return new Labrats.Models.TabGroupTemplate(tab_group_JSON, {parse: true});

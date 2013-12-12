@@ -4,7 +4,8 @@ Labrats.Views.OwnerNotebook = Backbone.View.extend({
         'click .grant-access': 'grantAccess',
         'click .revoke-access': 'revokeAccess',
         'click .page-select button': 'selectPage',
-        'click .delete-page' : 'deletePage'
+        'click .delete-page' : 'deletePage',
+        'blur #page-title': 'editPageName'
     },
 
     pages: [],
@@ -35,8 +36,9 @@ Labrats.Views.OwnerNotebook = Backbone.View.extend({
         this.resetPageNumbers();
         this.$el.find('.page').hide();
         if(this.pages.length > 0) {
-            this.$el.find('#page-' + this.pages[this.selectedPage].model.get('id')).show();
-            this.$el.find("#page-title").text('Page ' + (this.selectedPage + 1 ));
+            var page = this.pages[this.selectedPage].model;
+            this.$el.find('#page-' + page.get('id')).show();
+            this.$el.find("#page-title").text(page.get('name'));
         }
     },
 
@@ -139,5 +141,20 @@ Labrats.Views.OwnerNotebook = Backbone.View.extend({
         });
         $('.btn').addClass('btn-default');
         this.$el.find('#page-' + this.selectedPage).removeClass('btn-default');
-   }
+    },
+
+    editPageName: function(event) {
+        var name = $(event.currentTarget).text();
+        var page = this.pages[this.selectedPage].model;
+        if(page.get('name') === name) { // Nothing changed
+            return;
+        }
+        var notification = new Labrats.Views.Notification({
+            message: 'Saving...'
+        });
+        notification.show();
+        page.save({name: name}, {
+            url: '/page_templates/' + page.get('id')
+        });
+    }
 });
