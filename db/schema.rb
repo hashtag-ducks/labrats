@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131116163147) do
+ActiveRecord::Schema.define(:version => 20131212021220) do
 
   create_table "box_templates", :force => true do |t|
     t.string   "name"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(:version => 20131116163147) do
     t.integer  "notebook_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "name"
   end
 
   create_table "pages", :force => true do |t|
@@ -61,6 +62,7 @@ ActiveRecord::Schema.define(:version => 20131116163147) do
     t.integer  "page_template_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.string   "name"
   end
 
   create_table "tab_group_templates", :force => true do |t|

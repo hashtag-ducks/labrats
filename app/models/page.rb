@@ -5,6 +5,8 @@ class Page < ActiveRecord::Base
 
   delegate :notebook, to: :page_template
 
+  attr_accessible :name
+
   validates :page_template_id, presence: true
 
   def as_json(options={})
