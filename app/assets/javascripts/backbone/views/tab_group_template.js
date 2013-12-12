@@ -4,12 +4,11 @@ Labrats.Views.TabGroupTemplate = Labrats.Views.TabGroup.extend({
         'click .delete-box': 'deleteBox',
         'click .delete-tab-group': 'delete',
         'click ul.boxes li': 'switch',
-        'dblclick ul.boxes li a': 'editName',
         'blur a[contenteditable=true]': 'setName'
     },
 
     tabTemplate: '<li>' +
-        '<a href="#" id=<%= type %><%= id %>><%= name %></a>' +
+        '<a href="#" contenteditable="true" id=<%= type %><%= id %>><%= name %></a>' +
         '<span class="glyphicon glyphicon-remove delete-box"></span>' +
         '</li>',
 
@@ -109,21 +108,16 @@ Labrats.Views.TabGroupTemplate = Labrats.Views.TabGroup.extend({
         this.$el.remove();
     },
 
-    editName: function(event) {
-        event.preventDefault();
-        var ele = $(event.currentTarget);
-        ele.attr('contenteditable', 'true');
-    },
-
     setName: function(event) {
         event.preventDefault();
         var ele = $(event.currentTarget);
-        ele.attr('contenteditable', 'false');
         var text = ele.text();
         var id = parseInt(this.parseID(ele.attr('id'))[1]);
         var box = this.findBox(id);
-        box.set('name', text);
-        this.saveBox(box);
+        if(box.get('name') !== text) {
+            box.set('name', text);
+            this.saveBox(box);
+        }
     },
 
     saveBox: function(box) {
