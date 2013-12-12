@@ -17,10 +17,11 @@ Labrats.Views.SharedNotebook = Backbone.View.extend({
                 el: ele
             });
             self.pages.push(view);
-            var li = '<li><button href="#" id="page-<%= index %>" class="btn btn-default">Page <%= index + 1 %></button></li>'
+            var li = '<li><button href="#" id="page-<%= index %>" class="btn btn-default"><%= name %></button></li>'
             self.$el.find('ul.page-select').append(
                 $(_.template(li, {
-                    index: index
+                    index: index,
+                    name: page.get('name')
                 }))
             );
         });
@@ -30,8 +31,9 @@ Labrats.Views.SharedNotebook = Backbone.View.extend({
     render: function() {
         this.$el.find('.page').hide();
         if(this.pages.length > 0) {
-            this.$el.find('#page-' + this.pages[this.selectedPage].model.get('id')).show();
-            this.$el.find("#page-title").text('Page ' + (this.selectedPage + 1 ));
+            var page = this.pages[this.selectedPage].model;
+            this.$el.find('#page-' + page.get('id')).show();
+            this.$el.find("#page-title").text(page.get('name'));
         }
     },
 
