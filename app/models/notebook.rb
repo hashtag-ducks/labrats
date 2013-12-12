@@ -72,4 +72,14 @@ class Notebook < ActiveRecord::Base
       return super().merge({ pages: pages.map(&:as_json) })
     end
   end
+
+  # Create default page, tab group, and box so that this notebook is
+  # created with some content.
+  def setup_defaults
+    page_template = page_templates.create(name: "Page 1")
+    tab_group_template = page_template.tab_group_templates.create
+    box = TextBoxTemplate.new(name: "Text Box", content: "Put text here.")
+    box.tab_group_template = tab_group_template
+    box.save
+  end
 end

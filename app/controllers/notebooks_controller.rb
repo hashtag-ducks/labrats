@@ -9,6 +9,7 @@ class NotebooksController < ApplicationController
     @notebook.owner = current_user
     @notebook.users << current_user
     if @notebook.save
+      @notebook.setup_defaults
       redirect_to @notebook
     else
       render 'index'
