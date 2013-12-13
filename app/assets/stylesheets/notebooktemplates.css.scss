@@ -122,3 +122,7 @@ footer {
 #page-title {
     display: inline-block;
 }
+
+.is-dragging {
+    z-index: 2;
+}

@@ -3,7 +3,7 @@ Labrats.Views.OwnerNotebook = Backbone.View.extend({
         'click .new-page': 'newPage',
         'click .grant-access': 'grantAccess',
         'click .revoke-access': 'revokeAccess',
-        'click .page-select button': 'selectPage',
+        'mouseup .page-select button': 'selectPage',
         'click .delete-page' : 'deletePage',
         'blur #page-title': 'editPageName'
     },
@@ -22,22 +22,24 @@ Labrats.Views.OwnerNotebook = Backbone.View.extend({
                 el: ele
             });
             self.pages.push(view);
-            var li = '<li><button href="#" id="page-<%= index %>" class="btn btn-default">Page <%= index + 1 %></button></li>'
-            self.$el.find('ul.page-select').append(
-                $(_.template(li, {
-                    index: index
-                }))
-            );
+            var tpl = '<li><button href="#" id="page-<%= index %>" class="btn btn-default"><%= name %></button></li>'
+            var li = $(_.template(tpl, { index: index, name: page.get('name') }));
+            self.$el.find('ul.page-select').append(li);
+            var draggie = new Draggabilly(li[0], {
+                containment: self.$el.find('ul.page-select')
+            });
+            draggie.on('dragEnd', _.bind(self.dragEnd, self));
         });
         this.render();
     },
 
     render: function() {
-        this.resetPageNumbers();
         this.$el.find('.page').hide();
         if(this.pages.length > 0) {
             var page = this.pages[this.selectedPage].model;
+            $('.page-select li .btn').addClass('btn-default');
             this.$el.find('#page-' + page.get('id')).show();
+            this.$el.find('#page-' + this.selectedPage).removeClass('btn-default');
             this.$el.find("#page-title").text(page.get('name'));
         }
     },
@@ -45,7 +47,8 @@ Labrats.Views.OwnerNotebook = Backbone.View.extend({
     newPage: function(event) {
         event.preventDefault();
         var page_model = new Labrats.Models.PageTemplate({
-            notebook_id: this.$el.attr('id')
+            notebook_id: this.$el.attr('id'),
+            name: 'New Page'
         })
         var notification = new Labrats.Views.Notification({
             message: "Saving..."
@@ -66,10 +69,11 @@ Labrats.Views.OwnerNotebook = Backbone.View.extend({
                 });
                 self.pages.push(pageView);
                 self.selectedPage = self.pages.length - 1;
-                var li = '<li><button href="#" id="page-<%= index %>" class="btn">Page <%= index + 1 %></button></li>'
+                var li = '<li><button href="#" id="page-<%= index %>" class="btn"><%= name %></button></li>'
                 self.$el.find('ul.page-select').append(
                     $(_.template(li, {
-                        index: self.selectedPage
+                        index: self.selectedPage,
+                        name: page_model.get('name')
                     }))
                 );
                 self.model.get('page_templates').add(page_model);
@@ -132,15 +136,24 @@ Labrats.Views.OwnerNotebook = Backbone.View.extend({
         this.pages.splice(this.selectedPage, 1);
         this.$el.find('button#page-' + this.selectedPage).parent().remove();
         this.selectedPage = 0;
-        this.render();
-    },
 
-    resetPageNumbers: function() {
-        this.$el.find('.page-select li button').each(function(index, ele) {
-            ele.innerHTML = "Page " + (index+1);
+        var pageViews = [];
+        var self = this;
+        $('.page-select li').each(function(pageIndex, ele) {
+            var $ele = $(ele);
+            var oldIndex = parseInt(/page-(\d)/.exec($ele.find('button').attr('id'))[1]);
+            var page = self.pages[pageIndex];
+            if(oldIndex !== pageIndex) {
+                page.model.save({ordering: pageIndex}, {
+                    url: '/page_templates/' + page.model.get('id')
+                });
+            }
+            pageViews.push(page);
+            $ele.find('button').attr('id', 'page-' + pageIndex);
         });
-        $('.btn').addClass('btn-default');
-        this.$el.find('#page-' + this.selectedPage).removeClass('btn-default');
+        this.pages = pageViews;
+
+        this.render();
     },
 
     editPageName: function(event) {
@@ -156,5 +169,80 @@ Labrats.Views.OwnerNotebook = Backbone.View.extend({
         page.save({name: name}, {
             url: '/page_templates/' + page.get('id')
         });
+    },
+
+    /*
+     * draggie: the Draggabilly instance
+     * event: the mouseup event
+     * pointer: the MouseEvent instance
+     */
+    dragEnd: function(draggie, event, pointer) {
+        var $ele = $(draggie.element);
+        var sibling = this.computeIntersection($ele);
+        if(sibling !== null) {
+            sibling.ele[sibling.direction]($ele);
+        }
+        // Everything in its right place
+        $('.page-select li').css({
+            top: 'auto',
+            left: 'auto'
+        });
+        this.handleReorder();
+    },
+
+    /*
+     * Actually save the reorder to the server.
+     */
+    handleReorder: function() {
+        var pageViews = [];
+        var self = this;
+        var notification = new Labrats.Views.Notification({message: "Saving..."});
+        $('.page-select li').each(function(pageIndex, ele) {
+            var $ele = $(ele);
+            var oldIndex = parseInt(/page-(\d)/.exec($ele.find('button').attr('id'))[1]);
+            var page = self.pages[oldIndex];
+            if(oldIndex !== pageIndex) {
+                notification.show();
+                page.model.save({ordering: pageIndex}, {
+                    url: '/page_templates/' + page.model.get('id')
+                });
+            }
+            pageViews.push(page);
+            $ele.find('button').attr('id', 'page-' + pageIndex);
+        });
+        this.pages = pageViews;
+    },
+
+    computeIntersection: function($ele) {
+        var left = $ele.offset().left;
+        var siblings = $ele.siblings();
+        // Special case 1: No siblings.
+        if(siblings.length == 0) {
+            return null;
+        }
+        // Special case 2: Trying to drag to the beginning of the list.
+        if(left <= siblings.first().offset().left) {
+            return {
+                ele: siblings.first(),
+                direction: 'before'
+            }
+        }
+        // Special case 3: Dragging to the end of the list.
+        if(left >= siblings.last().offset().left + siblings.last().width()) {
+            return {
+                ele: siblings.last(),
+                direction: 'after'
+            }
+        }
+        for(var i = 0; i < siblings.length; i++) {
+            var $sib = $(siblings[i]);
+            var offset = $sib.offset();
+            if(left > offset.left && left <= $sib.width() + offset.left) {
+                return {
+                    ele: $sib,
+                    direction: (left < offset.left + $sib.width()/2) ? 'before' : 'after'
+                }
+            }
+        }
     }
 });

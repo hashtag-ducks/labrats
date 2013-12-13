@@ -31,6 +31,7 @@ class PageTemplatesController < ApplicationController
       # instead of Rails 4 where we can just say
       # `params.permit(:name)`. Fuck it.
       page_template.name = params[:page_template][:name]
+      page_template.ordering = params[:page_template][:ordering]
       if page_template.save
         respond_with page_template
       else
