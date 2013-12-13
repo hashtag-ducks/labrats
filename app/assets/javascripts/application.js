@@ -18,3 +18,4 @@
 //= require bootstrap
 //= require draggabilly.pkgd
 //= require_directory ./backbone
+//= require rails.validations
