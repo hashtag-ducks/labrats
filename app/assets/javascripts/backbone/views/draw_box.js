@@ -4,7 +4,7 @@ Labrats.Views.AbstractDrawBox = Labrats.Views.AbstractBox.extend({
         'mousedown .draw-box-image': 'startDragging',
         'mouseup .draw-box-image': 'stopDragging',
         'mousemove .draw-box-image': 'canvasClick',
-        'mouseout .draw-box-image': 'stopDragging'
+        'mouseout .draw-box-image': 'mouseOutDragging'
     },
 
     initialize: function() {
@@ -46,7 +46,7 @@ Labrats.Views.AbstractDrawBox = Labrats.Views.AbstractBox.extend({
         this.y = event.offsetY;
     },
 
-    stopDragging: function(event) {
+    mouseOutDragging: function(event) {
         this.isDragging = false;
         this.x = event.offsetX;
         this.y = event.offsetY;

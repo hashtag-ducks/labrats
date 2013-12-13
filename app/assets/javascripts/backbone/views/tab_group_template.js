@@ -65,7 +65,7 @@ Labrats.Views.TabGroupTemplate = Labrats.Views.TabGroup.extend({
                     el: boxEle
                 });
                 boxEle.find('.box').addClass('hidden');
-                self.model.get(this.childSelector).add(box_model);
+                self.model.get(self.childSelector).add(box_model);
                 self.selectBox(tab.children('a'));
             },
             error: function() {
