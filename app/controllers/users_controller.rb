@@ -23,6 +23,12 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find(params[:id])
+        @feed = []
+        @user.notebooks.each do |n|
+          n.page_templates.each do |t|
+            @feed << t
+          end
+        end
     end
 
     def edit

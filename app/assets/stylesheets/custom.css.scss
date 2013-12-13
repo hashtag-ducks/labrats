@@ -177,6 +177,12 @@ input {
     @extend .error;
 }
 
+span.error {
+  float: right;
+  color: #b94a48 !important;
+  // TODO: Select associated textfield and give it red highlight??
+}
+
 .notification {
     box-shadow: 0 -1px 3px rgba($black, 0.2), inset 0 5px 1px $yelOne;
     position: fixed;
@@ -224,6 +230,15 @@ input {
   h1 {
     margin-bottom: 20px;
   }
+  #user-feed {
+    border: 1px solid $lightGrey;
+    padding: 10px;
+    color: #333333;
+    width: 50%;
+    span.details {
+      color: #a9a9a9;
+    }
+  }
 }
 
 /* notebook forms */
@@ -232,7 +247,9 @@ input {
   width: 50%;
   margin: 0 auto;
   padding: 5px;
+  border: solid 1px $lightGrey;
+}
 
-  border: solid;
-  border-color: $lightGrey;
+.new-notebook-btn {
+  margin-bottom: 10px;
 }
