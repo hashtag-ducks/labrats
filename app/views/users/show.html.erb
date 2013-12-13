@@ -5,7 +5,7 @@
     <% if current_user? @user %>
       <%= link_to "Your notebooks", user_notebooks_url(@user) %>
     <% end %>
-  <h1>Recent Activity</h1>
+  <h2>Recent Activity</h2>
   <div id="user-feed">
     <%= render 'feed' %>
   </div>

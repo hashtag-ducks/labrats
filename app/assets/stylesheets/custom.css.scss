@@ -93,21 +93,10 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1;
 }
 
-h1 {
-    font-size: 3em;
-    letter-spacing: -2x;
-    margin-bottom: 30px;
-}
-
 h2 {
-    font-size: 1.2em;
-    letter-spacing: -1px;
-    margin-bottom: 30px;
-    text-align: center;
-    font-weight: normal;
-    color: #d3d3d3;
+  color: #333333;
+  font-size: 1.5em;
 }
-
 /* header */
 
 #logo {
