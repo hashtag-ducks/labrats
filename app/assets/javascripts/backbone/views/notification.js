@@ -12,18 +12,17 @@ Labrats.Views.Notification = Backbone.View.extend({
     },
 
     render: function() {
+        this.$el.html(_.template(this.tpl, this.options));
+    },
+
+    show: function() {
         // We don't want multiple notifications in the same place, so
         // we'll ensure that only one exists at a time.
         var singleton = Labrats.Views.Notification.active;
         if(singleton && singleton !== this) {
-            singleton.stopListening();
-            singleton.undelegateEvents();
+            return;
         }
-        this.$el.html(_.template(this.tpl, this.options));
         Labrats.Views.Notification.active = this;
-    },
-
-    show: function() {
         clearTimeout(this.hideTimeout);
         this.options.shown = true;
         this.shownAt = new Date();
@@ -35,6 +34,7 @@ Labrats.Views.Notification = Backbone.View.extend({
         // Make sure notification is shown for `this.duration`.
         if(this.shownAt && this.options.duration <= new Date() - this.shownAt) {
             this.options.shown = false;
+            Labrats.Views.Notification.active = null;
             delete this.shownAt;
             this.render();
         }
