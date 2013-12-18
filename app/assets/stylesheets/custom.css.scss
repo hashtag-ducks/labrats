@@ -1,6 +1,9 @@
 @import "bootstrap";
 @import "colors";
 
+/* fonts?? */
+@import url(http://fonts.googleapis.com/css?family=Arvo:700italic);
+
 /* mixins */
 @mixin box_sizing {
     -moz-box-sizing: border-box;
@@ -76,12 +79,6 @@ textarea {
     }
 }
 
-.navbar-brand {
-    color: $primary !important;
-    text-transform: uppercase;
-    font-weight: bold;
-}
-
 canvas {
     border-style: solid;
     border-width: 1px;
@@ -97,7 +94,29 @@ h2 {
   color: #333333;
   font-size: 1.5em;
 }
+
 /* header */
+
+.navbar-inverse {
+    background-color: $darkBlue;
+    border: none;
+    .navbar-nav > li > a {
+        color: #fff;
+    }
+}
+
+.navbar-brand {
+    font-family: 'Arvo', serif;
+    font-weight: bold;
+    font-style: oblique;
+    text-transform: lowercase;
+    font-size: 2em;
+    color: $green !important;
+    margin-top: -2.5px;
+    &:hover {
+        color: #fff !important;
+    }
+}
 
 #logo {
     float: left;
@@ -106,14 +125,20 @@ h2 {
     color: #fff;
     text-transform: uppercase;
     letter-spacing: -1px;
-    padding-top: 9px;
     font-weight: bold;
     line-height: 1;
+    width: 75px;
+    height: 75px;
+    padding-bottom: 5px;
 
     &:hover {
         color: #fff;
         text-decoration: none;
     }
+}
+
+.navbar-links {
+    padding-top: 10px;
 }
 
 /* home page */
@@ -123,6 +148,9 @@ h2 {
   margin-bottom: 100px;
   p {
     font-size: 10pt;
+    &:last-child {
+      color: #666666;
+    }
   }
   h1 {
     text-align: center;
@@ -173,7 +201,7 @@ span.error {
 }
 
 .notification {
-    box-shadow: 0 -1px 3px rgba($black, 0.2), inset 0 5px 1px $yelOne;
+    box-shadow: 0 -1px 3px rgba($black, 0.2), inset 0 5px 1px #EFEF9C;
     position: fixed;
     height: 44px;
     width: 100px;
@@ -206,7 +234,7 @@ span.error {
       display: block;
       margin-top: 6px;
 
-      color: $red;
+      color: #DD453A;
   }
 }
 
@@ -241,4 +269,10 @@ span.error {
 
 .new-notebook-btn {
   margin-bottom: 10px;
+}
+
+/* miscellaneous crap */
+.pair-prog {
+  width: 50%;
+  height: 50%;
 }

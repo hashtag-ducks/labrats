@@ -14,3 +14,6 @@
 
 # The secret token file.
 .secret
+
+# Ignore emacs files
+*~

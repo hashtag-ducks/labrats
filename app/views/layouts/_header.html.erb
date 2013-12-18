@@ -1,6 +1,8 @@
 <header class="navbar navbar-inverse navbar-static-top" role="banner">
   <div class="container">
+    <%= image_tag "logo.svg", :id => "logo" %>
     <!-- Group brand and toggle together -->
+    <div class="navbar-links">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
         <span class="sr-only">Toggle navigation</span>
@@ -14,7 +16,7 @@
     <!-- Links, forms, and other content t.b. toggled -->
     <nav class="collapse navbar-collapse navbar-ex1-collapse" role="navigation">
       <ul class="nav navbar-nav">
-        <li><%= link_to "About", '#' %></li>
+        <li><%= link_to "About", about_path %></li>
         <% if signed_in? %>
             <li><%= link_to "Notebooks", user_notebooks_url(current_user) %></li>
             <li><%= link_to "Profile", current_user %></li>
@@ -25,6 +27,7 @@
         <% end %>
       </ul>
     </nav>
+    </div>
     <!-- End collapsible portion. -->
 
   </div>

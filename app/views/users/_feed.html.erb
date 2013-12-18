@@ -1,6 +1,10 @@
-<% @feed.each do |f| %>
-  <p>
-    <%= @user.name %> updated <%= f.name %> in <%= f.notebook.name %> <%= time_ago_in_words(f.updated_at) %> ago  <br/>
-    <span class="details">Details go here.</span>
-  </p>
+<% if @feed.size > 0 %>
+    <% @feed.each do |f| %>
+      <p>
+        <%= @user.name %> updated <%= f.name %> in <%= f.notebook.name %> <%= time_ago_in_words(f.updated_at) %> ago  <br/>
+        <span class="details">Details go here.</span>
+      </p>
+    <% end %>
+<% else %>
+<p>This user has no recent activity.</p>
 <% end %>
