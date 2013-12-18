@@ -2,6 +2,7 @@
 @import "colors";
 
 /* fonts?? */
+@import url(http://fonts.googleapis.com/css?family=Pacifico);
 @import url(http://fonts.googleapis.com/css?family=Arvo:700italic);
 
 /* mixins */
@@ -76,6 +77,18 @@ textarea {
     
     h1 {
         margin-bottom: 10px;
+    }
+}
+
+.img-wrap {
+    margin: 0 auto;
+    text-align: center;
+    p {
+      font-style: italic;
+      font-weight: bold;
+      font-size: 2em;
+      font-family: 'Pacifico';
+      margin-bottom: 20px;
     }
 }
 
