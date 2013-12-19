@@ -4,6 +4,8 @@
 /* fonts?? */
 @import url(http://fonts.googleapis.com/css?family=Pacifico);
 @import url(http://fonts.googleapis.com/css?family=Arvo:700italic);
+@import url(http://fonts.googleapis.com/css?family=Maven+Pro:700);
+
 
 /* mixins */
 @mixin box_sizing {
@@ -114,7 +116,10 @@ h2 {
     background-color: $darkBlue;
     border: none;
     .navbar-nav > li > a {
-        color: #fff;
+        color: #8fbfe7;
+	font-family: 'Maven Pro', sans-serif;
+	text-transform: uppercase;
+	margin-top: -1px;
     }
 }
 
@@ -271,6 +276,7 @@ span.error {
 
 .new-notebook-btn {
   margin-bottom: 10px;
+  float: right;
 }
 
 /* about page */
