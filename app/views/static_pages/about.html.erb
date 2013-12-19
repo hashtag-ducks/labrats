@@ -4,9 +4,24 @@
     Stinkbug underlord, one man revolution, cat wrangler, legend.
   </p>
 
-  <%= image_tag "kyle.jpg" %>
-  <%= image_tag "peter.jpg" %>
-  <%= image_tag "meg.jpg" %>
-  <%= image_tag "oren.jpg" %>
+  <%= image_tag "oren.jpg", class: "about-img oren img-rounded" %>
+  <%= image_tag "peter.jpg", class: "about-img peter img-rounded" %>
+  <%= image_tag "meg.jpg", class: "about-img meg img-rounded" %>
+  <%= image_tag "kyle.jpg", class: "about-img kyle img-rounded" %>
+
+  <div class="oren-description">
+    <b>Oren Shoham</b> is an Oberlin College senior from the east side of Cleveland, Ohio studying computer science. He is interested in developing software tools that enhance the scientific research process, pursuing research at the intersection of computer science and neuroscience, and using his computer science training for social justice. He has previously worked as part of the development team for <%= link_to "Prestissimo", "http://www.oprestissimo.com" %>, a student-created search application for Oberlin's course catalog, and has also worked for a year in an Oberlin professor's neuroscience lab studying decision making in gambling tasks.
+  </div>
+  <div class="peter-description">
+    <b>Peter Fogg</b> is a senior Computer Science major at Oberlin, originally
+hailing from Rochester, NY. He has previously worked as Lead Engineer
+at Apatapa, and as an engineering intern at edX.
+  </div>
+  <div class="meg-description">
+    <b>Meg Davis</b> is a senior Computer Science major from the wildly exciting suburbs of central New Jersey. She most recently worked as a Software Development intern at <%= link_to "Epic Systems", "http://www.epic.com" %>, and has also worked as a design intern for a marketing company. She also has an extensive background in <%= link_to "vector illustration", "http://www.megdavis.net" %> and sporadically does freelance work.
+  </div>
+  <div class="kyle-description">
+    <b>Kyle Aungst</b> is a self-directed computer science enthusiast from Oberlin College and Conservatory. Praised for leadership capabilities, perseverance, and appetite for challenge. Intentional diversity of skills in communication, natural sciences, and user experience design.
+  </div>
 </div>
 

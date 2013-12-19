@@ -19,3 +19,4 @@
 //= require draggabilly.pkgd
 //= require_directory ./backbone
 //= require rails.validations
+//= require_tree .
