@@ -32,4 +32,3 @@ end
 gem 'jquery-rails'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'client_side_validations'
-gem 'breadcrumbs_on_rails'
