@@ -67,6 +67,17 @@ Labrats.Views.TabGroupTemplate = Labrats.Views.TabGroup.extend({
                 boxEle.find('.box').addClass('hidden');
                 self.model.get(self.childSelector).add(box_model);
                 self.selectBox(tab.children('a'));
+
+		var tabGroup = self.$el.find('ul.boxes');
+		var boxCount = tabGroup.children().length;
+		if ( boxCount  == 1 ) {
+		    tabGroup.addClass('single');
+		} else if ( boxCount >= 2 ) {
+		    if ( boxCount == 2 ) {
+			tabGroup.removeClass('single');
+		    }
+		    tabGroup.addClass('multi');
+		}
             },
             error: function() {
                 console.log('error saving ' + type);
@@ -94,6 +105,16 @@ Labrats.Views.TabGroupTemplate = Labrats.Views.TabGroup.extend({
         if(this.model.get(this.childSelector).length > 0) {
             this.selectBox(this.$el.find("ul.boxes li a").first());
         }
+	var tabGroup = this.$el.find('ul.boxes');
+	var boxCount = tabGroup.children().length;
+	if ( boxCount == 1 ) {
+	    tabGroup.removeClass('multi');
+	    tabGroup.addClass('single');
+	} else if ( boxCount >= 2 ) {
+	    tabGroup.addClass('multi');
+	} else if ( boxCount == 0 ) {
+	    tabGroup.removeClass('single');
+	}
     },
 
     delete: function(event) {
