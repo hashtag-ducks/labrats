@@ -59,12 +59,16 @@ Labrats.Views.TabGroupTemplate = Labrats.Views.TabGroup.extend({
                 }));
                 var boxEle = $('<div></div>');
                 self.$el.find('ul.boxes').append(tab);
-                self.$el.find('ul.boxes').after(boxEle);
+		self.$el.find('.box-data-container').append(boxEle);
+		
                 var boxView = new Labrats.Views[type]({
                     model: box_model,
                     el: boxEle
                 });
-                boxEle.find('.box').addClass('hidden');
+
+		var boxId = '#'+box_model.get('name').toLowerCase().replace(/\ /, '-')+'-'+box_model.get('id');
+
+                boxEle.find(boxId).addClass('hidden');
                 self.model.get(self.childSelector).add(box_model);
                 self.selectBox(tab.children('a'));
 
