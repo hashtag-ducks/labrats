@@ -52,12 +52,13 @@ ul.boxes {
 	    -webkit-transform: translateY(50px);
 	    -webkit-transition: all .25s ease-out;
 	    opacity: 0;
+	    display: inline-flex;
         }
 
 .tab-group-btns {
-	-webkit-transform: translate(50px);
-	-webkit-transition: all .25s ease-out;
-	opacity: 0;
+#	-webkit-transform: translateY(50px);
+#	-webkit-transition: all .25s ease-out;
+#	opacity: 1;
 }
 
 div.hidden {
@@ -72,9 +73,10 @@ div.hidden {
     & textarea {
         height: $boxHeight - 50px;
         width: 90%;
+	border-style: dashed;
     }
     & canvas {
-        border-style: solid;
+        border-style: dashed;
         border-width: 1px;
     }
     & ul {
@@ -86,11 +88,6 @@ div.hidden {
 .box-data-container:hover>.boxes {
         opacity: 1;
 	-webkit-transform: translateY(0px);
-	&:hover ~ .tab-group-btns {
-	    opacity: 1;
-	    -webkit-transform: translateY(10px);
-	}
-
 }
 
 div.page {
