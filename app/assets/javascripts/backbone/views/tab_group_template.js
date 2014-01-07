@@ -50,9 +50,6 @@ Labrats.Views.TabGroupTemplate = Labrats.Views.TabGroup.extend({
             tab_group_template_id: this.model.get('id'),
             type: type
         });
-	console.log("curTarget" + event.currentTarget);
-	console.log("type : " + type);
-	console.log("id : " + this.model.get('id'));
 
         var self = this;
         var notification = new Labrats.Views.Notification({
