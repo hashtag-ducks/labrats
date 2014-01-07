@@ -33,15 +33,27 @@ Labrats.Views.TabGroupTemplate = Labrats.Views.TabGroup.extend({
         if(this.model.get(this.childSelector).length > 0) {
             this.selectBox(this.$el.find("ul.boxes li a").first());
         }
+	if(this.$el.find("ul.boxes li").length == 0) {
+	    this.newBox("TextBoxTemplate");
+	}
     },
 
     newBox: function(event) {
-        event.preventDefault();
-        var type = $(event.currentTarget).data('box-type');
-        var box_model = new Labrats.Models[type]({
+	var type;
+	if(typeof event === "string") {
+	    type = event;
+	} else {
+            event.preventDefault();
+            var type = $(event.currentTarget).data('box-type');
+        }
+	var box_model = new Labrats.Models[type]({
             tab_group_template_id: this.model.get('id'),
             type: type
         });
+	console.log("curTarget" + event.currentTarget);
+	console.log("type : " + type);
+	console.log("id : " + this.model.get('id'));
+
         var self = this;
         var notification = new Labrats.Views.Notification({
             message: "Saving..."
