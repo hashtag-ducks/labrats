@@ -14,7 +14,7 @@ Labrats.Views.TabGroup = Backbone.View.extend({
                 name: box.get('name')
             }));
             var ele = $('<div></div>');
-            self.$el.find('ul.boxes').append(tab);
+            self.$el.find('ul.boxes').prepend(tab);
             self.$el.find('ul.boxes').after(ele);
             var boxView = new Labrats.Views[box.get('type')]({
                 model: box,
@@ -40,6 +40,9 @@ Labrats.Views.TabGroup = Backbone.View.extend({
     },
 
     selectBox: function(boxTab) {
+	if(boxTab.hasClass('dropdown-toggle')) {
+	    return;
+	}
         this.$el.find("ul.boxes li").each(function() {
             $(this).addClass('inactive').removeClass('active');
         });

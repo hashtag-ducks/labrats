@@ -2,13 +2,16 @@
   <div class="box-data-container">
     <ul class="boxes">
       <!-- Boxes attach here -->
-	    <div class="tab-group-btns">
+      	   <li class="tab-group-btns dropdown">
+	    <a href="#" class="glyphicon glyphicon-plus dropdown-toggle" data-toggle="dropdown"></a>
 	      <!-- <a href="#" class="delete-box">Delete Current Box</a> -->
-	      <button href="#" class="new-box btn btn-default" data-box-type="TextBoxTemplate"><span class="glyphicon glyphicon-align-left tab-glyph"></span>New Text Box</button>
-	      <button href="#" class="new-box btn btn-default" data-box-type="DrawBoxTemplate"><span class="glyphicon glyphicon-pencil tab-glyph"></span>New Draw Box</button>
-	      <button href="#" class="new-box btn btn-default" data-box-type="FileUploadBoxTemplate"><span class="glyphicon glyphicon-upload tab-glyph"></span>New File Upload Box</button>
-	      <button href="#" class="delete-tab-group btn btn-default"><span class="glyphicon glyphicon-remove tab-glyph"></span>Delete this tab group</button>
-	    </div>
+	      <ul class="dropdown-menu">
+	      <li><button href="#" class="new-box btn btn-default" data-box-type="TextBoxTemplate"><span class="glyphicon glyphicon-align-left tab-glyph"></span>New Text Box</button></li>
+	      <li><button href="#" class="new-box btn btn-default" data-box-type="DrawBoxTemplate"><span class="glyphicon glyphicon-pencil tab-glyph"></span>New Draw Box</button></li>
+	      <li><button href="#" class="new-box btn btn-default" data-box-type="FileUploadBoxTemplate"><span class="glyphicon glyphicon-upload tab-glyph"></span>New File Upload Box</button></li>
+	      <li><button href="#" class="delete-tab-group btn btn-default"><span class="glyphicon glyphicon-remove tab-glyph"></span>Delete this tab group</button></li>
+	      </ul>
+	    </li>
     </ul>
   </div>
 </div>
