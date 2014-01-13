@@ -1,11 +1,16 @@
 <div id="home-page">
-  <%= image_tag "notebook.svg", :class => "notebook-picture" %>
-  <h1>Digitize your lab manuals.</h1>
-  <p>
-    Use Labrats to easily search, share, and edit your lab data.
-  </p>
-  <%= link_to "Get Started", signup_path, :class => "btn btn-lg btn-primary" %>
-  <p>
-    Already a user? <%= link_to "Sign in.", signin_path %>
-  </p>
+  <% if signed_in? %>
+    <h2> Hello, <%= current_user.name %>.</h2>
+    <p> <%= link_to "Go to your notebooks.", user_notebooks_path(current_user) %></p>
+  <% else %>
+    <%= image_tag "notebook.svg", :class => "notebook-picture" %>
+    <h1>Digitize your lab manuals.</h1>
+    <p>
+      Use Labrats to easily search, share, and edit your lab data.
+    </p>
+    <%= link_to "Get Started", signup_path, :class => "btn btn-lg btn-primary" %>
+    <p>
+      Already a user? <%= link_to "Sign in.", signin_path %>
+    </p>
+  <% end %>
 </div>

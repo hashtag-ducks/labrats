@@ -13,6 +13,9 @@ class User < ActiveRecord::Base
   validates :organization, presence: true
   validates :password, presence: true, length: { minimum: 10 }
   validates :password_confirmation, presence: true
+  
+  # Issues with client-side validations can probs be fixed here.
+  # look at client_side_validations documentation
 
   def User.new_remember_token
     SecureRandom.urlsafe_base64
