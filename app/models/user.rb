@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, format: { with: EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   validates :organization, presence: true
   validates :password, presence: true, length: { minimum: 8 }, confirmation: true 
-  validates :password_confirmation, presence: { :if => :password_changed? }
+  validates :password_confirmation, presence: true
   
   # Issues with client-side validations can probs be fixed here.
   # look at client_side_validations documentation
