@@ -196,15 +196,11 @@ input {
     }
 }
 
-.field_with_errors {
+.field_with_errors .message {
     @extend .control-group;
-    @extend .error;
-}
-
-span.error {
-  float: right;
-  color: #b94a48 !important;
-  // TODO: Select associated textfield and give it red highlight??
+    display: block;
+    float:right;
+    color: #b94a48;
 }
 
 .notification {
@@ -236,13 +232,6 @@ span.error {
 #signup-form, #signin-form {
   width: 50%;
   margin: 0 auto;
-
-  .error {
-      display: block;
-      margin-top: 6px;
-
-      color: #DD453A;
-  }
 }
 
 /* user pages */

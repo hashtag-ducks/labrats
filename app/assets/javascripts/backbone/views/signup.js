@@ -1,4 +1,4 @@
-Labrats.Views.Signup = Backbone.View.extend({
+/*Labrats.Views.Signup = Backbone.View.extend({
     events: {
         'input #user_name': 'checkFields',
         'input #user_organization': 'checkFields',
@@ -72,4 +72,4 @@ Labrats.Views.Signup = Backbone.View.extend({
         }
         return true;
     }
-});
+});*/
