@@ -14,7 +14,7 @@ Labrats.Views.TabGroup = Backbone.View.extend({
                 name: box.get('name')
             }));
             var ele = $('<div></div>');
-            self.$el.find('ul.boxes').prepend(tab);
+            self.$el.find('li.tab-group-btns').before(tab);
             self.$el.find('ul.boxes').after(ele);
             var boxView = new Labrats.Views[box.get('type')]({
                 model: box,

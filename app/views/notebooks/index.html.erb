@@ -1,11 +1,11 @@
 <h1>Your notebooks</h1>
 <div class="notebooks">
-  <button href="#" id="new-notebook" class="btn btn-default new-notebook-btn">New Notebook</button>
   <ul>
     <% @notebooks.each do |notebook| %>
       <li><%= link_to notebook.name, notebook %></li>
     <% end %>
   </ul>
+  <button href="#" id="new-notebook" class="btn btn-default new-notebook-btn">New Notebook</button>
   <div class="new-notebook-form hidden">
     <%= form_for(@notebook, url: user_notebooks_path) do |form| %>
     <div class="form-group">

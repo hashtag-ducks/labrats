@@ -67,7 +67,7 @@ Labrats.Views.TabGroupTemplate = Labrats.Views.TabGroup.extend({
                     name: box_model.get('name')
                 }));
                 var boxEle = $('<div></div>');
-                self.$el.find('ul.boxes').prepend(tab);
+                self.$el.find('li.tab-group-btns').before(tab); // insert new tab immediately before the 'plus' button
 		self.$el.find('.box-data-container').append(boxEle);
 		
                 var boxView = new Labrats.Views[type]({
