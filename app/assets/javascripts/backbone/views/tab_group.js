@@ -36,7 +36,12 @@ Labrats.Views.TabGroup = Backbone.View.extend({
 
     switch: function(event) {
         event.preventDefault();
-        this.selectBox($(event.currentTarget).children('a'));
+        // this if statement works, but it would be cleaner to fix
+        // the jquery selector for the 'switch' function at the 
+        // top of this file
+        if($(event.currentTarget).parent().hasClass('boxes')) {
+            this.selectBox($(event.currentTarget).children('a'));
+        }
     },
 
     selectBox: function(boxTab) {
