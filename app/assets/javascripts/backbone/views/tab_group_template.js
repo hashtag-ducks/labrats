@@ -4,7 +4,8 @@ Labrats.Views.TabGroupTemplate = Labrats.Views.TabGroup.extend({
         'click .delete-box': 'deleteBox',
         'click .delete-tab-group': 'delete',
         'click ul.boxes li': 'switch',
-        'blur a[contenteditable=true]': 'setName'
+        'blur a[contenteditable=true]': 'setName',
+        'click ul.boxes li.tab-group-btns': 'toggleDropdown'
     },
 
     tabTemplate: '<li>' +
@@ -203,10 +204,19 @@ Labrats.Views.TabGroupTemplate = Labrats.Views.TabGroup.extend({
         return null;
     },
 
+    // this is not the most elegant fix
+    // it's a horrible frankenstein of jQuery and Bootstrap
+    // works though
+    toggleDropdown: function(event) {
+        event.preventDefault();
+        $(event.currentTarget).toggleClass('open');
+    },
+
     /*
      * Correctly reorder this tab group's boxes.
      */
     handleReorder: function(ele) {
         // TODO: do
     }
+
 });

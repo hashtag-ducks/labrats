@@ -3,7 +3,7 @@
     <ul class="boxes">
       <!-- Boxes attach here -->
       	   <li class="tab-group-btns dropdown">
-	    <a href="#" class="glyphicon glyphicon-plus dropdown-toggle" data-toggle="dropdown"></a>
+	    <a class="glyphicon glyphicon-plus dropdown-toggle"></a>
 	      <!-- <a href="#" class="delete-box">Delete Current Box</a> -->
 	      <ul class="dropdown-menu">
 	      <li><button href="#" class="new-box btn btn-default" data-box-type="TextBoxTemplate"><span class="glyphicon glyphicon-align-left tab-glyph"></span>New Text Box</button></li>
