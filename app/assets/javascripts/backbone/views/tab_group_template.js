@@ -83,10 +83,10 @@ Labrats.Views.TabGroupTemplate = Labrats.Views.TabGroup.extend({
 
 		var tabGroup = self.$el.find('ul.boxes');
 		var boxCount = tabGroup.children().length;
-		if ( boxCount  == 1 ) {
+		if ( boxCount  == 2 ) {
 		    tabGroup.addClass('single');
-		} else if ( boxCount >= 2 ) {
-		    if ( boxCount == 2 ) {
+		} else if ( boxCount >= 3 ) {
+		    if ( boxCount == 3 ) {
 			tabGroup.removeClass('single');
 		    }
 		    tabGroup.addClass('multi');
@@ -120,12 +120,12 @@ Labrats.Views.TabGroupTemplate = Labrats.Views.TabGroup.extend({
         tab.parent().remove();
 	var tabGroup = this.$el.find('ul.boxes');
 	var boxCount = tabGroup.children().length;
-	if ( boxCount == 1 ) {
+	if ( boxCount == 2 ) {
 	    tabGroup.removeClass('multi');
 	    tabGroup.addClass('single');
-	} else if ( boxCount >= 2 ) {
+	} else if ( boxCount >= 3 ) {
 	    tabGroup.addClass('multi');
-	} else if ( boxCount == 0 ) {
+	} else if ( boxCount == 1 ) {
 	    tabGroup.removeClass('single');
 	}
     },
