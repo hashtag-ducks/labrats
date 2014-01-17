@@ -112,12 +112,12 @@ Labrats.Views.TabGroupTemplate = Labrats.Views.TabGroup.extend({
         box.destroy({
             url: box.url() + '/' + box.get('id')
         });
-        tab.parent().remove();
         var type = parsedID[0].match(/[A-Z][a-z]*/g).map(function(s) { return s.toLowerCase(); }).join("-").replace(/-template/, '');
         this.$el.find('#' + type + '-' + parsedID[1]).remove();
         if(this.model.get(this.childSelector).length > 0) {
-            this.selectBox(this.$el.find("ul.boxes li a").first());
+            this.selectBox(tab.parent().prev().children('a'));
         }
+        tab.parent().remove();
 	var tabGroup = this.$el.find('ul.boxes');
 	var boxCount = tabGroup.children().length;
 	if ( boxCount == 1 ) {
