@@ -49,6 +49,7 @@ GEM
       execjs
     coffee-script-source (1.6.3)
     diff-lcs (1.2.5)
+    docile (1.1.2)
     erubis (2.7.0)
     execjs (2.0.2)
     factory_girl (4.2.0)
@@ -122,6 +123,11 @@ GEM
       multi_json (~> 1.0)
       rubyzip (~> 1.0)
       websocket (~> 1.0.4)
+    simplecov (0.8.2)
+      docile (~> 1.1.0)
+      multi_json
+      simplecov-html (~> 0.8.0)
+    simplecov-html (0.8.0)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -155,4 +161,5 @@ DEPENDENCIES
   rake (= 10.1.0)
   rspec-rails (~> 2.0)
   sass-rails (~> 3.2.3)
+  simplecov
   uglifier (>= 1.0.3)
