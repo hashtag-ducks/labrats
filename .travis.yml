@@ -5,8 +5,8 @@ script: bundle exec rspec spec
 before_script:
   - psql -c 'create database labrats_test;' -U postgres
   - cp config/database.travis.yml config/database.yml
-  - rake db:migrate
-  - rake db:test:prepare
+  - bundle exec rake db:migrate
+  - bundle exec rake db:test:prepare
 notifications:
   email:
     on_success: never
