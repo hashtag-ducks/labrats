@@ -46,12 +46,11 @@ describe TabGroupTemplatesController do
                 }.to change(TabGroupTemplate, :count).by(1)
             end
 
-            # first line of this test is not working, despite appearing to be valid rspec
-           #it "should respond with a 422 unprocessable entity status on failed save" do
-           #    TabGroupTemplate.any_instance.stub(:save).and_return(false) #tells any subsequent instance to return false when attempting to save
-           #    post :create, :tab_group_template => {:page_template_id => @page_template.id}, :page_template_id => @page_template.id
-           #    expect(response.status).to be 422
-           #end
+            it "should respond with a 422 unprocessable entity status on failed save" do
+                TabGroupTemplate.any_instance.stub(:save).and_return(false) #tells any subsequent instance to return false when attempting to save
+                post :create, :tab_group_template => {:page_template_id => @page_template.id}, :page_template_id => @page_template.id
+                expect(response.status).to be 422
+            end
         end
 
         context "with invalid user permissions" do
