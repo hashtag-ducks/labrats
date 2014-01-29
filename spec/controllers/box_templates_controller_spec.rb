@@ -10,6 +10,28 @@ describe BoxTemplatesController do
     end
 
     describe "PUT #update" do
+        before do
+            @box_template = FactoryGirl.create(:box_template, :tab_group_template => @tab_group_template)
+            sign_in @user
+        end 
+
+        it "should find the correct BoxTemplate" do
+            put :update, id: @box_template, box_template: FactoryGirl.attributes_for(:box_template)
+            assigns(:box_template).should eq(@box_template)
+        end
+
+        it "should filter out non-accessible parameters" do
+            put :update, id: @box_template, box_template: FactoryGirl.attributes_for(:box_template)
+            assigns(:filtered_params).each do |k, v|
+                @box_template.class.accessible_attributes.should include(k)
+            end
+        end
+
+        it "should respond with a 422 unprocessable entity status on failed update" do
+            BoxTemplate.any_instance.stub(:update_attributes).and_return(false)
+            put :update, id: @box_template, box_template: FactoryGirl.attributes_for(:box_template)
+            expect(response.status).to be 422
+        end
     end
 
     describe "POST #create" do
