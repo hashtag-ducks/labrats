@@ -1,4 +1,7 @@
 Labrats.Collections.Boxes = Backbone.Collection.extend({
     model: Labrats.Models.Box,
-    url: '/boxes'
+
+    url: '/boxes',
+
+    comparator: 'ordering'
 });

@@ -5,9 +5,6 @@ Labrats.Models.TabGroup = Backbone.Model.extend({
                 return new Labrats.Models[box_JSON.type](box_JSON, {parse: true});
             })
         );
-        response.boxes.sortBy(function(box) {
-            return box.get('ordering');
-        });
         return response;
     }
 });

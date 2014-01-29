@@ -1,4 +1,7 @@
 Labrats.Collections.PageTemplates = Backbone.Collection.extend({
     model: Labrats.Models.PageTemplates,
-    url: "/page_templates"
+
+    url: "/page_templates",
+
+    comparator: 'ordering'
 });

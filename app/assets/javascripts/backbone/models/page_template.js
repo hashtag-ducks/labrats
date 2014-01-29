@@ -31,9 +31,6 @@ Labrats.Models.PageTemplate = Backbone.Model.extend({
                 return new Labrats.Models.TabGroupTemplate(tab_group_JSON, {parse: true});
             })
         );
-        response.tab_group_templates.sortBy(function(tab_group_template) {
-            return tab_group_template.get('ordering');
-        });
         return response;
     }
 });

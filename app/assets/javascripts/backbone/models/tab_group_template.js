@@ -31,9 +31,6 @@ Labrats.Models.TabGroupTemplate = Backbone.Model.extend({
                 return new Labrats.Models[box_JSON.type](box_JSON, {parse: true});
             })
         );
-        response.box_templates.sortBy(function(box_template) {
-            return box_template.get('ordering');
-        });
         return response;
     }
 });
