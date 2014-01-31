@@ -10,6 +10,8 @@ gem 'pg'
 group :test, :development do
   gem 'rspec-rails', '~> 2.0'
   gem 'jasmine'
+  gem 'guard'
+  gem 'guard-rspec', :require => false
 end
 
 group :test do
