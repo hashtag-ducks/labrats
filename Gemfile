@@ -12,6 +12,7 @@ group :test, :development do
   gem 'jasmine'
   gem 'guard'
   gem 'guard-rspec', :require => false
+  gem 'guard-spork'
 end
 
 group :test do
