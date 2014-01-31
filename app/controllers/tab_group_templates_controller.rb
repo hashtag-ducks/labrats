@@ -12,7 +12,7 @@ class TabGroupTemplatesController < ApplicationController
         if @tab_group_template.save
             respond_with @tab_group_template
         else
-            respond_with @tab_group_template, status: :unprocessable_entity
+            render :nothing => true, status: :unprocessable_entity
         end
     end
 

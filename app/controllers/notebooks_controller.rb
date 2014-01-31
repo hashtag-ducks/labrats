@@ -24,7 +24,7 @@ class NotebooksController < ApplicationController
   def show
     @notebook = Notebook.find(params[:id])
     if !@notebook.users.include? current_user
-        flash[:error] = "No street cred"
+        flash[:error] = "You do not have permission to view this notebook"
         redirect_to root_url && return
     end
 

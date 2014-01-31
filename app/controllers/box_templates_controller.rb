@@ -7,7 +7,7 @@ class BoxTemplatesController < ApplicationController
     respond_to :json
 
     def update
-        box_template = BoxTemplate.find(params[:id])
+        @box_template = BoxTemplate.find(params[:id])
         # WOO METAPROGRAMMING MAGIC
         #
         # To elaborate: we don't want all the attributes of the box to be
@@ -15,13 +15,13 @@ class BoxTemplatesController < ApplicationController
         # attr_accessible-ified. So we filter those out before doing the
         # update, asking the class to supply which params these actually
         # are. Neato.
-        filtered_params = params[:box_template].select do |k, v|
-            box_template.class.accessible_attributes.include? k
+        @filtered_params = params[:box_template].select do |k, v|
+            @box_template.class.accessible_attributes.include? k
         end
-        if box_template.update_attributes(filtered_params)
-            respond_with box_template
+        if @box_template.update_attributes(@filtered_params)
+            respond_with @box_template
         else
-            respond_with box_template, status: :unprocessable_entity
+            render :nothing => true, status: :unprocessable_entity
         end
     end
 
