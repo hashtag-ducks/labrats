@@ -12,8 +12,18 @@ FactoryGirl.define do
     owner
   end
 
+  factory :page do
+    page_template
+    user
+  end
+
   factory :page_template do
     notebook
+  end
+
+  factory :tab_group do
+    tab_group_template
+    page
   end
 
   factory :tab_group_template do
