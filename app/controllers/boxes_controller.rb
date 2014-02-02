@@ -13,13 +13,13 @@ class BoxesController < ApplicationController
 
     def update
         @box = Box.find(params[:id])
-        filtered_params = params[:box].select do |k, v|
+        @filtered_params = params[:box].select do |k, v|
             @box.class.accessible_attributes.include? k
         end
-        if @box.update_attributes(filtered_params)
+        if @box.update_attributes(@filtered_params)
             respond_with @box
         else
-            respond_with @box, status: :unprocessable_entity
+            render :nothing => true, status: :unprocessable_entity
         end
     end
 

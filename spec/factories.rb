@@ -35,6 +35,12 @@ FactoryGirl.define do
     sequence(:name) { |n| "Box Template #{n}" }
   end
 
+  factory :box do
+    box_template
+    tab_group
+    name 'box'
+  end
+
   factory :text_box_template, parent: :box_template do
     content 'content'
   end
