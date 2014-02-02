@@ -6,26 +6,26 @@ class NotebookAccessController < ApplicationController
     respond_to :json
 
     def create
-        notebook = Notebook.find(params[:id])
-        user = User.find_by_email(params[:user_email])
-        unless notebook.users.include? user
-            notebook.add_user user
+        @notebook = Notebook.find(params[:id])
+        @user = User.find_by_email(params[:user_email])
+        unless @notebook.users.include? @user
+            @notebook.add_user @user
         end
-        if notebook.save
-            respond_with notebook
+        if @notebook.save
+            respond_with @notebook
         else
-            respond_with notebook, status: :unprocessable_entity
+            respond_with @notebook, status: :unprocessable_entity
         end
     end
 
     def destroy
-        notebook = Notebook.find(params[:id])
-        user = User.find_by_email(params[:user_email])
-        notebook.remove_user user
-        if notebook.save
-            respond_with notebook
+        @notebook = Notebook.find(params[:id])
+        @user = User.find_by_email(params[:user_email])
+        @notebook.remove_user @user
+        if @notebook.save
+            respond_with @notebook
         else
-            respond_with notebook, status: :unprocessable_entity
+            render :nothing => true, status: :unprocessable_entity
         end
     end
 
